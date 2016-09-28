@@ -41,7 +41,7 @@ class CodiCmsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function defineResources()
+    /*protected function defineResources()
     {
         $this->loadViewsFrom(SPARK_PATH.'/resources/views', 'spark');
 
@@ -64,14 +64,14 @@ class CodiCmsServiceProvider extends ServiceProvider
                 SPARK_PATH.'/resources/views/settings/team/tabs/membership/modals/edit-team-member.blade.php' => base_path('resources/views/vendor/spark/settings/team/tabs/membership/modals/edit-team-member.blade.php'),
             ], 'spark-basics');
         }
-    }
+    }*/
 
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
+    /*public function register()
     {
         if (! defined('SPARK_PATH')) {
             define('SPARK_PATH', realpath(__DIR__.'/../../'));
@@ -90,14 +90,14 @@ class CodiCmsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([Install::class]);
         }
-    }
+    }*/
 
     /**
      * Bind the Spark services into the container.
      *
      * @return void
      */
-    protected function defineServices()
+    /*protected function defineServices()
     {
         $services = [
             RegistrarContract::class => Registrar::class,
@@ -109,5 +109,5 @@ class CodiCmsServiceProvider extends ServiceProvider
         foreach ($services as $key => $value) {
             $this->app->bindIf($key, $value);
         }
-    }
+    }*/
 }
