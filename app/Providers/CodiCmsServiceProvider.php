@@ -3,9 +3,11 @@
 namespace Codigu\CodiCMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class CodiCmsServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
@@ -31,13 +33,33 @@ class CodiCmsServiceProvider extends ServiceProvider
             $router = app('router');
 
             $router->group(['namespace' => 'Codigu\CodiCMS\Http\Controllers'], function ($router) {
-                require __DIR__.'/../routes/api.php';
+
                 require __DIR__.'/../routes/console.php';
                 require __DIR__.'/../routes/web.php';
             });
 
-            $this->app->register(Laravel\Passport\PassportServiceProvider::class);
+            $this->mapApiRoutes();
+
+            $this->app->register('Laravel\Passport\PassportServiceProvider');
         }
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes()
+    {
+        Route::group([
+            'middleware' => 'api',
+            'namespace' => 'Codigu\CodiCMS\Controllers',
+            'prefix' => 'api',
+        ], function ($router) {
+            require __DIR__.'/../routes/api.php';
+        });
     }
 
     /**

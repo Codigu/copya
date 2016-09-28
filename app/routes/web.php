@@ -17,8 +17,8 @@ Route::get('/pages', function () {
 
 
 Route::group(['middleware' => ['web']], function ($router) {
-    // Terms Routes...
-    //$router->get('terms', 'TermsController@show');
-    // Settings Dashboard Routes...
 
+    $router->get('/admin', function(){
+        echo "admin here";
+    });
 });
