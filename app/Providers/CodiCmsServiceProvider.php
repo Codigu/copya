@@ -31,8 +31,12 @@ class CodiCmsServiceProvider extends ServiceProvider
             $router = app('router');
 
             $router->group(['namespace' => 'Codigu\CodiCMS\Http\Controllers'], function ($router) {
-                require __DIR__.'/../Http/routes.php';
+                require __DIR__.'/../routes/api.php';
+                require __DIR__.'/../routes/console.php';
+                require __DIR__.'/../routes/web.php';
             });
+
+            $this->app->register(Laravel\Passport\PassportServiceProvider::class);
         }
     }
 
