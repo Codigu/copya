@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,6 @@ Route::get('/pages', function () {
     return "Return List of Pages";
 });
 
-
 Route::get('/page/{slug}', function () {
     return "Return List of Pages";
 });
@@ -25,8 +26,12 @@ Route::get('/page/{slug}', function () {
 /* admin pages */
 
 Route::group(['middleware' => ['web']], function ($router) {
-
-    $router->get('/admin', function(){
-        echo "admin here";
+    $router->group(['prefix' => Config::get('copya.admin_path')], function($router){
+        $router->get('/dashboard', function(){
+            return 'success roue group';
+        });
+        $router->get('/pages', function(){
+            return 'success roue group';
+        });
     });
 });

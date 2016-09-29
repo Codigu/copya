@@ -4,6 +4,8 @@ namespace Copya\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Copya\Console\CopyaInstallCommand;
+
 
 class CopyaServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,18 @@ class CopyaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        // Publish config files
+        $this->publishes([
+            __DIR__.'/../Config/copya.php' => config_path('copya.php'),
+        ]);
+
+        //publish resources
+
+        $this->publishes([
+            __DIR__.'/../../resources/assets/js/components' => base_path('resources/assets/js/components/copya'),
+        ], 'copya-components');
+
         $this->app->booted(function () {
             $this->defineRoutes();
         });
@@ -39,9 +53,20 @@ class CopyaServiceProvider extends ServiceProvider
             });
 
             $this->mapApiRoutes();
+            $this->createModels();
+
 
             $this->app->register('Laravel\Passport\PassportServiceProvider');
         }
+    }
+
+    /**
+     * Craete Necessary Model Classes
+     */
+
+    protected function createModels()
+    {
+
     }
 
     /**
@@ -55,11 +80,25 @@ class CopyaServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'api',
-            'namespace' => 'Copya\Controllers',
+            'namespace' => 'Copya\Http\Controllers\API',
             'prefix' => 'api',
         ], function ($router) {
             require __DIR__.'/../routes/api.php';
         });
+    }
+
+    public function register()
+    {
+        /*if (! defined('SPARK_PATH')) {
+            define('SPARK_PATH', realpath(__DIR__.'/../../'));
+        }
+        if (! class_exists('Spark')) {
+            class_alias('Laravel\Spark\Spark', 'Spark');
+        }*/
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([CopyaInstallCommand::class]);
+        }
     }
 
     /**

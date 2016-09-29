@@ -219,7 +219,7 @@
          */
         data() {
             return {
-                clients: [],
+                users: [],
 
                 createForm: {
                     errors: [],
@@ -239,38 +239,36 @@
          * Prepare the component.
          */
         ready() {
-            this.getClients();
+            this.getUsers();
 
-            $('#modal-create-client').on('shown.bs.modal', () => {
+            /*$('#modal-create-client').on('shown.bs.modal', () => {
                 $('#create-client-name').focus();
             });
 
             $('#modal-edit-client').on('shown.bs.modal', () => {
                 $('#edit-client-name').focus();
-            });
+            });*/
         },
 
         methods: {
-            /**
-             * Get all of the OAuth clients for the user.
-             */
-            getClients() {
-                this.$http.get('/oauth/clients')
+            getUsers() {
+                this.$http.get('/users')
                         .then(response => {
-                            this.clients = response.data;
+                            console.log(response);
+                            this.users = response.data;
                         });
             },
 
-            /**
+           /* /!**
              * Show the form for creating new clients.
-             */
+             *!/
             showCreateClientForm() {
                 $('#modal-create-client').modal('show');
             },
 
-            /**
+            /!**
              * Create a new OAuth client for the user.
-             */
+             *!/
             store() {
                 this.persistClient(
                     'post', '/oauth/clients',
@@ -278,9 +276,9 @@
                 );
             },
 
-            /**
+            /!**
              * Edit the given client.
-             */
+             *!/
             edit(client) {
                 this.editForm.id = client.id;
                 this.editForm.name = client.name;
@@ -289,9 +287,9 @@
                 $('#modal-edit-client').modal('show');
             },
 
-            /**
+            /!**
              * Update the client being edited.
-             */
+             *!/
             update() {
                 this.persistClient(
                     'put', '/oauth/clients/' + this.editForm.id,
@@ -299,9 +297,9 @@
                 );
             },
 
-            /**
+            /!**
              * Persist the client to storage using the given form.
-             */
+             *!/
             persistClient(method, uri, form, modal) {
                 form.errors = [];
 
@@ -324,15 +322,15 @@
                     });
             },
 
-            /**
+            /!**
              * Destroy the given client.
-             */
+             *!/
             destroy(client) {
                 this.$http.delete('/oauth/clients/' + client.id)
                         .then(response => {
                             this.getClients();
                         });
-            }
+            }*/
         }
     }
 </script>

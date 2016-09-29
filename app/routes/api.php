@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::get('/pages', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::group(['middleware' => ['auth:api']], function ($router){
+    $router->resource('users', 'UsersController');
+});
