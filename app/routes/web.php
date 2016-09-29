@@ -11,10 +11,18 @@
 |
 */
 
+/* front end pages */
 Route::get('/pages', function () {
     return "Return List of Pages";
 });
 
+
+Route::get('/page/{slug}', function () {
+    return "Return List of Pages";
+});
+
+
+/* admin pages */
 
 Route::group(['middleware' => ['web']], function ($router) {
 

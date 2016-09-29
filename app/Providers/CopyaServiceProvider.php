@@ -1,11 +1,11 @@
 <?php
 
-namespace Codigu\CodiCMS\Providers;
+namespace Copya\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
-class CodiCmsServiceProvider extends ServiceProvider
+class CopyaServiceProvider extends ServiceProvider
 {
 
     /**
@@ -32,7 +32,7 @@ class CodiCmsServiceProvider extends ServiceProvider
         if (! $this->app->routesAreCached()) {
             $router = app('router');
 
-            $router->group(['namespace' => 'Codigu\CodiCMS\Http\Controllers'], function ($router) {
+            $router->group(['namespace' => 'Copya\Http\Controllers'], function ($router) {
 
                 require __DIR__.'/../routes/console.php';
                 require __DIR__.'/../routes/web.php';
@@ -55,7 +55,7 @@ class CodiCmsServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => 'api',
-            'namespace' => 'Codigu\CodiCMS\Controllers',
+            'namespace' => 'Copya\Controllers',
             'prefix' => 'api',
         ], function ($router) {
             require __DIR__.'/../routes/api.php';
