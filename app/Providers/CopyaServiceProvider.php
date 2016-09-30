@@ -2,6 +2,7 @@
 
 namespace Copya\Providers;
 
+use Copya\Console\CmsMigration;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Copya\Console\CopyaInstallCommand;
@@ -97,7 +98,7 @@ class CopyaServiceProvider extends ServiceProvider
         }*/
 
         if ($this->app->runningInConsole()) {
-            $this->commands([CopyaInstallCommand::class]);
+            $this->commands([CopyaInstallCommand::class, CmsMigration::class]);
         }
     }
 
