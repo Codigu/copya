@@ -15,7 +15,16 @@ class CreateCmsTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('title');
+            $table->string('slug');
+            $table->text('content');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')
+                ->on('users')->onDelete('cascade')
+                ->onUpdate('cascade');
+
         });
     }
 
