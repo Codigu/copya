@@ -9,9 +9,6 @@ class UsersController extends BaseController
 {
     public function index()
     {
-        $users = User::all();
-
-        return response()->json($users);
-
+        return view('copya.admin.users.index');
     }
 }

@@ -28,6 +28,7 @@ class CopyaServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../../resources/assets/js/components' => base_path('resources/assets/js/components/copya'),
+            __DIR__.'/../../resources/views' => base_path('resources/views'),
         ], 'copya-components');
 
         $this->app->booted(function () {

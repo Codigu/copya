@@ -12,6 +12,7 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\Pagination\PaginatorInterface;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use Copya\Serializers\CustomArraySerializer;
 
 class ApiBaseController extends BaseController
 {
@@ -55,6 +56,7 @@ class ApiBaseController extends BaseController
     }
     private function buildResponse(ResourceInterface $resource)
     {
+        $this->manager->setSerializer(new CustomArraySerializer());
         $data = $this->manager->createData($resource);
 
         return Response::make($data->toArray());
