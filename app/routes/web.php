@@ -26,12 +26,13 @@ Route::get('/page/{slug}', function () {
 /* admin pages */
 
 Route::group(['middleware' => ['web']], function ($router) {
-    $router->group(['prefix' => Config::get('copya.admin_path')], function($router){
+    $router->group(['prefix' => Config::get('copya.admin_path'), 'namespace' => 'Admin',], function($router){
+        $router->get('/', function(){
+            return redirect('/dashboard');
+        });
         $router->get('/dashboard', function(){
             return 'success roue group';
         });
-        $router->get('/pages', function(){
-            return 'success roue group';
-        });
+        $router->get('/users', 'UsersController@index');
     });
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace Codigu\CodiCMS\Controllers;
+namespace Copya\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
