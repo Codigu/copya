@@ -6,6 +6,7 @@ use Copya\Console\CmsMigration;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Copya\Console\CopyaInstallCommand;
+use Laravel\Passport\Passport;
 
 
 class CopyaServiceProvider extends ServiceProvider
@@ -27,14 +28,16 @@ class CopyaServiceProvider extends ServiceProvider
         //publish resources
 
         $this->publishes([
-            __DIR__.'/../../resources/assets/js/components' => base_path('resources/assets/js/components/copya'),
+            __DIR__.'/../../resources/assets/js' => base_path('resources/assets/js'),
             __DIR__.'/../../resources/views' => base_path('resources/views'),
         ], 'copya-components');
 
-        $this->app->booted(function () {
-            $this->defineRoutes();
-        });
+        /*$this->app->booted(function () {
 
+        });*/
+        $this->defineRoutes();
+
+        Passport::routes();
         //$this->defineResources();
     }
 

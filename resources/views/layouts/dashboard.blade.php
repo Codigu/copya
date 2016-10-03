@@ -21,6 +21,7 @@
     </script>
 </head>
 <body>
+@section('header')
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -76,8 +77,33 @@
         </div>
     </div>
 </nav>
+@show
 
-@yield('content')
+@section('sidebar')
+    <ul>
+    @foreach($sidenav as $key => $nav)
+        @if(count($nav) == 1)
+            @foreach($nav as $item)
+                <li><a href="{{ route($item['nav_name'])  }}">{{ ucfirst($item['nav_name']) }}</a></li>
+            @endforeach
+        @elseif(count($nav) > 1)
+            <li>{{ $key }}
+            <ul>
+            @foreach($nav as $item)
+                <li><a href="{{ route($item['nav_name'])  }}">{{ ucfirst($item['nav_name']) }}</a></li>
+            @endforeach
+            </ul>
+            </li>
+        @endif
+
+
+    @endforeach
+    </ul>
+@show
+<div id="app">
+    @yield('content')
+</div>
+
 
         <!-- Scripts -->
 <script src="/js/copya.js"></script>
