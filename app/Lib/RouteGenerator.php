@@ -61,7 +61,7 @@ class RouteGenerator
      */
     protected function filterRoute(array $route)
     {
-        if ( ! Str::contains($route['uri'], Config::get('copya.admin_path'))) {
+        if ( ! Str::contains($route['uri'], Config::get('copya.admin_path')) || $route['uri'] == Config::get('copya.admin_path')) {
             return;
         }
 

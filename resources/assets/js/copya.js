@@ -14,22 +14,8 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue')
-);
-
-Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue')
-);
-
-Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue')
-);
-
 Vue.component('users-component', require('./components/copya/Users.vue'));
+Vue.component('pages-component', require('./components/copya/Pages.vue'));
 
 
 const app = new Vue({
