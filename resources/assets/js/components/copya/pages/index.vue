@@ -15,7 +15,7 @@
                 <div class="panel-title">Users
                 </div>
                 <div class="btn-group pull-right m-b-10">
-                    <button type="button" class="btn btn-default">Add new</button>
+                    <a class="btn btn-default" href="{{ route('add.page') }}">Add new</a>
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                     </button>
@@ -42,29 +42,29 @@
                             <th style="width:29%">Email</th>
                         </tr>
                         </thead>
-                            <tbody>
-                                <tr v-for="user in users">
-                                    <td class="v-align-middle">
-                                        <div class="checkbox ">
-                                            <input type="checkbox" value="{{ user.id }}" id="checkbox1">
-                                            <label for="checkbox1"></label>
-                                        </div>
-                                    </td>
-                                    <td class="v-align-middle ">
-                                        <p>{{  user.id }}</p>
-                                    </td>
-                                    <td class="v-align-middle ">
-                                        <p>{{  user.name }}</p>
-                                    </td>
-                                    <td class="v-align-middle">
-                                        <p>{{ user.email }}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        <tbody>
+                            <tr v-for="user in users">
+                                <td class="v-align-middle">
+                                    <div class="checkbox ">
+                                        <input type="checkbox" value="{{ user.id }}" id="checkbox1">
+                                        <label for="checkbox1"></label>
+                                    </div>
+                                </td>
+                                <td class="v-align-middle ">
+                                    <p>{{  user.id }}</p>
+                                </td>
+                                <td class="v-align-middle ">
+                                    <p>{{  user.name }}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{ user.email }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
     </div>
 </template>
 
@@ -75,7 +75,7 @@
          */
         data() {
             return {
-                users: [],
+                poages: [],
 
                 createForm: {
                     errors: [],
@@ -95,7 +95,7 @@
          * Prepare the component.
          */
         ready() {
-            this.getUsers();
+            this.getPages();
 
             /*$('#modal-create-client').on('shown.bs.modal', () => {
              $('#create-client-name').focus();
@@ -107,12 +107,20 @@
         },
 
         methods: {
-            getUsers() {
-                this.$http.get('/api/users')
+            getPages() {
+                this.$http.get('/api/pages')
                     .then(response => {
-                        this.users = response.data;
+                        console.log(response);
+                        this.pages = response.data;
+                    }, response => {
+                        console.log(response);
                     });
             },
+
+            showCreateClientForm() {
+                $('#modal-create-client').modal('show');
+            },
+
 
             /* /!**
              * Show the form for creating new clients.

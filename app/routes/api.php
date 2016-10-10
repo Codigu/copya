@@ -19,4 +19,5 @@ Route::get('/pages', function (Request $request) {
 
 Route::group(['middleware' => ['auth:api']], function ($router){
     $router->resource('users', 'UsersController');
+    $router->resource('pages', 'PagesController');
 });

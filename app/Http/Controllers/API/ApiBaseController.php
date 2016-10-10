@@ -17,9 +17,9 @@ use Copya\Serializers\CustomArraySerializer;
 class ApiBaseController extends BaseController
 {
     private $manager;
-    public function __construct(Manager $manager)
+    public function __construct()
     {
-        $this->manager = $manager;
+        $this->manager = new Manager();
     }
     public function getManager()
     {

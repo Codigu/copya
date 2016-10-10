@@ -26,6 +26,14 @@
     <link href="/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="/plugins/summernote/css/summernote.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" media="screen">
+
 
     <!--[if lte IE 9]>
 	<link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
@@ -377,13 +385,11 @@
     </div>
     <!-- END PAGE CONTAINER -->
 
-    <!-- Scripts -->
 
-    <script src="/js/copya.js"></script>
     <!-- BEGIN VENDOR JS -->
 
     <script src="/plugins/pace/pace.min.js" type="text/javascript"></script>
-    {{--<script src="/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>--}}
+    <script src="/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="/plugins/modernizr.custom.js" type="text/javascript"></script>
     <script src="/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     {{--<script src="/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>--}}
@@ -396,11 +402,31 @@
     <script type="text/javascript" src="/plugins/bootstrap-select2/select2.min.js"></script>
     <script type="text/javascript" src="/plugins/classie/classie.js"></script>
     <script src="/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+    <script src="/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script type="text/javascript" src="/plugins/jquery-autonumeric/autoNumeric.js"></script>
+    <script type="text/javascript" src="/plugins/dropzone/dropzone.min.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-tag/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="/plugins/jquery-inputmask/jquery.inputmask.min.js"></script>
+    <script src="/plugins/bootstrap-form-wizard/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <script src="/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="/plugins/summernote/js/summernote.min.js" type="text/javascript"></script>
+    <script src="/plugins/moment/moment.min.js"></script>
+    <script src="/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="/plugins/bootstrap-typehead/typeahead.bundle.min.js"></script>
+    <script src="/plugins/bootstrap-typehead/typeahead.jquery.min.js"></script>
+    <script src="/plugins/handlebars/handlebars-v4.0.5.js"></script>
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="/assets/copya/js/pages.min.js"></script>
     <!-- END CORE TEMPLATE JS -->
     <!-- BEGIN PAGE LEVEL JS -->
+    <script src="/assets/copya/js/form_elements.js" type="text/javascript"></script>
     <script src="/assets/copya/js/scripts.js" type="text/javascript"></script>
+
+    <!-- Scripts -->
+
+    <script src="/js/copya.js"></script>
 </body>
 </html>

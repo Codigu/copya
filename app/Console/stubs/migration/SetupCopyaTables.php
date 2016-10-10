@@ -13,18 +13,26 @@ class SetupCopyaTables extends Migration
      */
     public function up()
     {
+       /* Schema::create('statuses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('display_name');
+            $table->timestamps();
+        });*/
+
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->string('slug');
             $table->text('content');
+            $table->timestamp('published_at');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade')
                 ->onUpdate('cascade');
-
         });
     }
 

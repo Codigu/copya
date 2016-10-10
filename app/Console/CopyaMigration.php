@@ -51,7 +51,7 @@ class CopyaMigration extends Command
 
     protected function makeMigration()
     {
-        $path = substr(__DIR__, 0, -11) . "resources/database/SetupCopyaTables.php";
+        $path = __DIR__ . "/stubs/migration/SetupCopyaTables.php";
         $migrationFile = base_path("/database/migrations") . "/".date('Y_m_d_His')."_setup_copya_tables.php";
 
         if(class_exists('SetupCopyaTables')){

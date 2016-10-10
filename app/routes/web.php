@@ -28,13 +28,13 @@ Route::get('/page/{slug}', function () {
 Route::group(['middleware' => ['web', 'auth']], function ($router) {
     $router->group(['prefix' => Config::get('copya.admin_path'), 'namespace' => 'Admin',], function($router){
         $router->get('/', function(){
-            return redirect('/dashboard');
+            return redirect()->route('dashboard');
         });
         $router->get('/dashboard', 'UsersController@index')->name('dashboard');
 
         $router->group(['prefix' => 'pages'], function($router){
-            $router->get('/', 'UsersController@index')->name('pages');
-            $router->get('/add', 'UsersController@index')->name('add.page');
+            $router->get('/', 'PagesController@index')->name('pages');
+            $router->get('/add', 'PagesController@create')->name('add.page');
         });
 
         $router->group(['prefix' => 'users'], function($router){

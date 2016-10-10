@@ -8,4 +8,9 @@ class PagesController extends BaseController
     {
         return view('copya.admin.pages.index', array('sidenav' => $this->getSideNav()));
     }
+
+    public function create()
+    {
+        return view('copya.admin.pages.form', array('sidenav' => $this->getSideNav()));
+    }
 }
