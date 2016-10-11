@@ -18,9 +18,7 @@ Route::get('/pages', function () {
     return "Return List of Pages";
 });
 
-Route::get('/page/{slug}', function () {
-    return "Return List of Pages";
-});
+Route::get('/page/{slug}', 'FrontEnd\PagesController@show');
 
 
 /* admin pages */
@@ -35,6 +33,7 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
         $router->group(['prefix' => 'pages'], function($router){
             $router->get('/', 'PagesController@index')->name('pages');
             $router->get('/add', 'PagesController@create')->name('add.page');
+            $router->get('{id}/edit', 'PagesController@edit')->name('edit.page');
         });
 
         $router->group(['prefix' => 'users'], function($router){

@@ -3,14 +3,27 @@
 namespace Copya\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Page extends Model
 {
-    protected $table = 'pages';
-    protected $date = ['published_at'];
+    use Sluggable;
+    use SoftDeletes;
+    use SluggableScopeHelpers;
 
-    public function status()
+    protected $table = 'pages';
+    protected $date = ['published_at', 'deleted_at'];
+    protected $fillable = ['title', 'slug', 'content', 'published_at', 'user_id'];
+
+    public function sluggable()
     {
-        return $this->hasOne(Copya\Eloquent\Status::class);
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
+
 }

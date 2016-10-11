@@ -54,8 +54,12 @@
                                             <a @click="changeStatus = false">Ok</a>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-cons m-b-10" type="button" @click="store">
+
+                                    <button class="btn btn-primary btn-cons m-b-10" type="button" @click="store" v-if="!page.id">
                                         <i class="pg-form"></i> <span class="bold">Submit</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-cons m-b-10" type="button" @click="update" v-if="page.id">
+                                        <i class="pg-form"></i> <span class="bold">Update</span>
                                     </button>
                                 </div>
                             </div>
@@ -82,13 +86,13 @@
             return {
                 page: {
                     errors: [],
+                    id: '',
                     status: 'draft',
                     content: '',
+                    title: '',
                 },
 
                 changeStatus: false,
-
-                statusList: [],
             };
         },
 
@@ -96,6 +100,7 @@
          * Prepare the component.
          */
         ready() {
+            this.show();
         },
 
         methods: {
@@ -104,6 +109,25 @@
                         'post', '/api/pages',
                         this.page, '#add-new-page'
                 );
+            },
+            update() {
+                this.persistClient(
+                        'put', '/api/pages/'+ this.page.id,
+                        this.page, '#add-new-page'
+                );
+            },
+
+            show() {
+                var pathArray = window.location.pathname.split( '/' );
+                console.log(pathArray[3]);
+                if(pathArray[3] % 1 === 0){
+                    this.$http.get('/api/pages/'+pathArray[3])
+                        .then(response => {
+                        console.log(response.data);
+                        this.page = response.data;
+                        this.page.errors = [];
+                    });
+                }
             },
 
             /**
@@ -114,14 +138,16 @@
 
                 this.$http[method](uri, form)
                     .then(response => {
-                    console.log(response.data);
-                    //this.getClients();
-                    //redirect to page edit
+                    if(method == 'post'){
+                        var pathArray = window.location.pathname.split('/');
+                        var protocol = (window.location.protocol) ? window.location.protocol : 'http';
+                        var newUrl = protocol + '//' + window.location.host + '/' + pathArray[1] + '/' + pathArray[2] + '/' + response.data.id + '/edit/';
+                        window.location = newUrl;
+                    }
                 })
                 .catch(response => {
                     console.log(response.data);
                     if (typeof response.data === 'object') {
-
                         form.errors = _.flatten(_.toArray(response.data));
                     } else {
                         form.errors = ['Something went wrong. Please try again.'];

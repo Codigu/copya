@@ -26,7 +26,7 @@ class SetupCopyaTables extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

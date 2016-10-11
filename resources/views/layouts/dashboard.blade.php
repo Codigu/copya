@@ -343,9 +343,10 @@
                             <!-- START BREADCRUMB -->
                             <ul class="breadcrumb">
                                 <li>
-                                    <p>{{ Config::get('copya.admin_path') }}</p>
+                                    <p><a href="{{ route('dashboard') }}">{{ Config::get('copya.admin_path') }}</a></p>
                                 </li>
-                                <li><a href="{{ route(Route::currentRouteName()) }}" class="active">{{ Route::currentRouteName() }}</a>
+                                <li>
+                                    {{ Route::currentRouteName() }}
                                 </li>
                             </ul>
                             <!-- END BREADCRUMB -->
