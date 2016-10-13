@@ -43,6 +43,10 @@ class CopyaServiceProvider extends ServiceProvider
         ], 'copya-views');
 
         $this->publishes([
+            __DIR__.'/../../resources/assets/plugins' => base_path('public/plugins'),
+        ], 'copya-public');
+
+        $this->publishes([
             __DIR__.'/../../resources/assets/js' => base_path('resources/assets/js'),
         ], 'copya-vue');
 

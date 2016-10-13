@@ -32,9 +32,9 @@ class PagesController extends ApiBaseController
 
     public function show($id)
     {
-        try{
+        try {
             $page = $this->model->find($id);
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
@@ -43,9 +43,9 @@ class PagesController extends ApiBaseController
 
     public function store(PageRequest $request)
     {
-        $data = $request->except(['errors','id', 'trashed']);
+        $data = $request->except(['errors', 'id', 'trashed']);
 
-        try{
+        try {
             $page = $this->model;
 
             $page->title = $data['title'];
@@ -54,7 +54,7 @@ class PagesController extends ApiBaseController
             $page->user_id = Auth::user()->id;
 
             $page->save();
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
@@ -64,13 +64,13 @@ class PagesController extends ApiBaseController
 
     public function update(PageRequest $request, $id)
     {
-        $data = $request->except(['errors','id', 'trashed', 'slug']);
+        $data = $request->except(['errors', 'id', 'trashed', 'slug']);
 
-        try{
+        try {
             $page = $this->model->find($id);
 
             $published_at = null;
-            if($page->published_at){
+            if ($page->published_at) {
                 $published_at = ($data['status'] == 'published') ? $page->published_at : null;
             } else {
                 $published_at = ($data['status'] == 'published') ? Carbon::now() : null;
@@ -82,7 +82,7 @@ class PagesController extends ApiBaseController
             $page->user_id = Auth::user()->id;
 
             $page->save();
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
@@ -96,7 +96,7 @@ class PagesController extends ApiBaseController
         if (!$page) {
             return response()->json(['error' => 'Entity not processable'], 402);
         }
-        try{
+        try {
             $page->destroy($id);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -104,5 +104,23 @@ class PagesController extends ApiBaseController
 
 
         return response()->json(['deleted' => true, 'message' => 'Page Deleted Successfully.']);
+    }
+
+    public function getTemplates()
+    {
+        $path = config('copya.layouts');
+        $layouts = [];
+        try {
+            $files = array_diff(scandir(base_path($path)), ['..', '.']);
+
+            foreach($files as $file){
+                $layouts[] = str_replace(".blade.php", "", $file);
+            }
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+
+        return response()->json($layouts);
     }
 }

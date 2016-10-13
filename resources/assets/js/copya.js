@@ -13,7 +13,6 @@ require('bootstrap-sass');
 window.Vue = require('vue');
 require('vue-resource');
 
-
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
 next();
@@ -26,7 +25,6 @@ next();
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('editor', require('vue-html-editor'));
 Vue.component('users-component', require('./components/copya/Users.vue'));
 Vue.component('pages-component', require('./components/copya/pages/index.vue'));
 Vue.component('form-pages-component', require('./components/copya/pages/form.vue'));

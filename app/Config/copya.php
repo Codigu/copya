@@ -12,5 +12,7 @@ return [
     'models' => [
         'page' => Copya\Eloquent\Page::class,
         'status' => Copya\Eloquent\Status::class,
-    ]
+    ],
+
+    'layouts' => 'resources/views/layout/frontend',
 ];
