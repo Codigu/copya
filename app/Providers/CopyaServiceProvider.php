@@ -102,12 +102,6 @@ class CopyaServiceProvider extends ServiceProvider
 
     public function register()
     {
-        /*if (! defined('SPARK_PATH')) {
-            define('SPARK_PATH', realpath(__DIR__.'/../../'));
-        }
-        if (! class_exists('Spark')) {
-            class_alias('Laravel\Spark\Spark', 'Spark');
-        }*/
 
         if ($this->app->runningInConsole()) {
             $this->commands([CopyaInstallCommand::class, CopyaMigration::class]);

@@ -77,6 +77,8 @@
     </div>
 </nav>
 
+
+<h3>Single Column</h3>
 @yield('content')
 
         <!-- Scripts -->

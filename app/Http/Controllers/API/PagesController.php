@@ -50,6 +50,7 @@ class PagesController extends ApiBaseController
 
             $page->title = $data['title'];
             $page->content = $data['content'];
+            $page->layout = $data['layout'];
             $page->published_at = ($data['status'] == 'published') ? Carbon::now() : null;
             $page->user_id = Auth::user()->id;
 
@@ -78,6 +79,7 @@ class PagesController extends ApiBaseController
 
             $page->title = $data['title'];
             $page->content = $data['content'];
+            $page->layout = $data['layout'];
             $page->published_at = $published_at;
             $page->user_id = Auth::user()->id;
 
