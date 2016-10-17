@@ -30,25 +30,20 @@ class CopyaServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../../resources/assets/js' => base_path('resources/assets/js'),
-            __DIR__.'/../../resources/assets/plugins' => base_path('resources/assets/plugins'),
             __DIR__.'/../../resources/assets/img' => base_path('public/assets/copya/img'),
             __DIR__.'/../../resources/assets/fonts' => base_path('public/assets/copya/fonts'),
             __DIR__.'/../../resources/assets/pages' => base_path('resources/assets/copya/js'),
             __DIR__.'/../../resources/assets/sass' => base_path('resources/assets/copya/sass'),
-            __DIR__.'/../../resources/views' => base_path('resources/views'),
+            __DIR__.'/../../resources/views' => base_path('resources/views/vendor'),
         ], 'copya-components');
 
         $this->publishes([
-            __DIR__.'/../../resources/views' => base_path('resources/views'),
+            __DIR__.'/../../resources/views' => base_path('resources/views/vendor'),
         ], 'copya-views');
 
         $this->publishes([
-            __DIR__.'/../../resources/assets/plugins' => base_path('public/plugins'),
-        ], 'copya-public');
-
-        $this->publishes([
             __DIR__.'/../../resources/assets/js' => base_path('resources/assets/js'),
-        ], 'copya-vue');
+        ], 'copya-scripts');
 
         /*$this->app->booted(function () {
 
