@@ -2,4 +2,5 @@
 
 @section('content')
     <div ng-view></div>
+    <div ui-view></div>
 @endsection
