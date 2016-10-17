@@ -1,6 +1,6 @@
 {
-    "name": "codigu/codicms",
-    "description": "Laravel CMS build by codigu",
+    "name": "codigu/copya",
+    "description": "Copya Laravel CMS built by CODIGU",
     "keywords": ["laravel", "codigu", "cms"],
     "license": "MIT",
     "authors": [
