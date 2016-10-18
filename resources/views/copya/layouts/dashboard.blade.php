@@ -1,4 +1,4 @@
-<html lang="en" ng-app="copya.app" data-ng-init="activetab=='/'">
+<html lang="en" ng-app="copya" ng-controller="CopyaController">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,20 +19,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link href="/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="/plugins/summernote/css/summernote.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" media="screen">
-
 
     <!--[if lte IE 9]>
 	<link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
@@ -48,7 +34,15 @@
     </script>
 
 </head>
-<body>
+<body  class="fixed-header" ng-class="{
+'bg-master-lighter': is('copya.extra.timeline'),
+'no-header': is('copya.social') || is('copya.calendar') || is('copya.maps.vector') || is('copya.maps.google'),
+'menu-pin' : copya.layout.menuPin || is('boxed'),
+'menu-behind' : copya.layout.menuBehind,
+'box-layout' : is('boxed'),
+'horizontal-menu': is('copya.layouts.horizontal'),
+'rtl' : is('copya.layouts.rtl')
+ }">
     @yield('content')
     <script src="/js/copya.js"></script>
 </body>

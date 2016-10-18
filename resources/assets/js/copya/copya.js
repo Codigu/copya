@@ -1,9 +1,12 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routes from './copya.routes';
-//import ngRoute from 'angular-route';
+import CopyaController from './controllers/CopyaController';
+import includeReplace from './directives/includeReplace';
 
-console.log(routes);
 
-angular.module('copya.app', [uiRouter])
+angular.module('copya', [uiRouter, 'includeReplace'])
+    .controller('CopyaController', CopyaController)
     .config(routes);
+
+
