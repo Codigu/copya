@@ -1,8 +1,8 @@
 import angular from 'angular';
 import routes from './copya.routes';
-import ngRoute from 'angular-route';
+//import ui-router from 'angular-ui-router';
 
-console.log(routes);
 
-angular.module('copya.app', ['ngRoute'])
+
+angular.module('copya.app', [require('angular-ui-router')])
     .config(routes);

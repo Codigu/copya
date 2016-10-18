@@ -1,10 +1,12 @@
-routes.$inject = ['$routeProvider', '$locationProvider'];
+routes.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-export default function routes($routeProvider, $locationProvider) {
-    $routeProvider
-        .when('/', {
-            template: '<h1>You have to work</h1>',
+export default function routes($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('dashboard', {
+            url: '/',
+            template: '<h1>testing</h1>'
         });
 
+    $urlRouterProvider.when('', '/');
     //$locationProvider.html5Mode(true);
 }
