@@ -105,5 +105,4 @@ class CopyaServiceProvider extends ServiceProvider
         $this->app->register(SluggableService::class);
 
     }
-
 }

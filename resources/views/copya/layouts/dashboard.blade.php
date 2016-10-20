@@ -33,6 +33,29 @@
         ]); ?>
     </script>
 
+
+    <link href="js/copya/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+    <link href="js/copya/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="js/copya/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="js/copya/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+    <link id="lazyload_placeholder">
+    <!-- BEGIN Pages CSS-->
+
+    <link class="main-stylesheet" ng-href="@{{copya.layout.theme}}" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 9]>
+    <link href="pages/css/ie9.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <link href="js/copya/plugins/mapplic/css/mapplic-ie.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <script type="text/javascript">
+        window.onload = function() {
+            // fix for windows 8
+            if (navigator.appVersion.indexOf("Windows NT 6.2") != -1)
+                document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="pages/css/windows.chrome.fix.css" />'
+        }
+    </script>
+
 </head>
 <body  class="fixed-header" ng-class="{
 'bg-master-lighter': is('copya.extra.timeline'),
