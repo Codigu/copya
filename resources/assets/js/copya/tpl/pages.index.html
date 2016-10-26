@@ -1,0 +1,58 @@
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <div class="panel-title">Pages
+            </div>
+            <div class="btn-group pull-right m-b-10">
+                <button type="button" class="btn btn-default" ng-click="newPage()">Add new</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="pagesTable">
+                    <thead>
+                    <tr>
+                        <!-- NOTE * : Inline Style Width For Table Cell is Required as it may differ from user to user
+                                    Comman Practice Followed
+                                    -->
+                        <th style="width:1%">
+                            <button class="btn"><i class="pg-trash"></i>
+                            </button>
+                        </th>
+                        <th style="width:20%">Title</th>
+                        <th style="width:20%">Status</th>
+                        <th style="width:29%">Excerpt</th>
+                        <th style="width:15%">Last Updated</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="page in pages" ng-click="editPage(page.id)">
+                            <td class="v-align-middle">
+                                <div class="checkbox ">
+                                    <input type="checkbox" value="{{ page.id }}" id="checkbox{{ page.id }}" ng-click="selectRow($event)">
+                                    <label for="checkbox{{ page.id }}"></label>
+                                </div>
+                            </td>
+                            <td class="v-align-middle ">
+                                <p>{{ page.title }}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{ page.status }}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{ page.excerpt | limitTo: 50 }}</p>
+                            </td>
+
+                            <td class="v-align-middle">
+                                <p>{{ page.updated_at }}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>

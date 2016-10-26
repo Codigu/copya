@@ -1,4 +1,3 @@
-import angular from 'angular';
 
 function includeReplace() {
     return {
@@ -11,5 +10,5 @@ function includeReplace() {
 }
 
 
-export default angular.module('includeReplace', [])
+angular.module('copya')
     .directive('includeReplace', includeReplace);

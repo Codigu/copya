@@ -3,7 +3,7 @@
  * Shows a list of notifications in a dropdown in header
  * ============================================================ */
 
-angular.module('app')
+angular.module('copya')
     .directive('pgNotificationCenter', function() {
         return {
             restrict: 'A',

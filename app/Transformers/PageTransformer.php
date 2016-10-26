@@ -23,7 +23,10 @@ class PageTransformer extends TransformerAbstract
             'content' => $page->content,
             'status' => ($page->published_at) ? 'published' : 'draft',
             'trashed' => ($page->deleted_at) ? true : false,
+            'excerpt' => strip_tags($page->content),
+            'layout' => $page->layout,
             'created_at' => date("M-d-Y", strtotime($page->created_at)),
+            'updated_at' => date("M-d-Y", strtotime($page->updated_at)),
         ];
     }
 }

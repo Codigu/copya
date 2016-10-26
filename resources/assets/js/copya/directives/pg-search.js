@@ -3,7 +3,7 @@
  * AngularJS directive for Pages Overlay Search jQuery plugin
  * ============================================================ */
 
-angular.module('app')
+angular.module('copya')
     .directive('pgSearch', ['$parse', function($parse) {
         return {
             restrict: 'A',

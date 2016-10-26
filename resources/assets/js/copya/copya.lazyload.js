@@ -1,7 +1,7 @@
 
-load.$inject = ['$ocLazyLoadProvider'];
 
-export default function load($ocLazyLoadProvider){
+function load($ocLazyLoadProvider){
+    console.log('test');
     $ocLazyLoadProvider.config({
         debug: true,
         events: true,
@@ -261,3 +261,9 @@ export default function load($ocLazyLoadProvider){
         ]
     });
 }
+
+load.$inject = ['$ocLazyLoadProvider'];
+
+
+angular.module('copya')
+    .config(load);

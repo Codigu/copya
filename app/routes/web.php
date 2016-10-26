@@ -31,9 +31,9 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
         $router->get('/dashboard', 'UsersController@index')->name('dashboard');
 
         $router->group(['prefix' => 'pages'], function($router){
-            $router->get('/', 'PagesController@index')->name('pages');
-            $router->get('/add', 'PagesController@create')->name('add.page');
-            $router->get('{id}/edit', 'PagesController@edit')->name('edit.page');
+            $router->get('/', 'PagesController@index')->name('pages.index');
+            $router->get('/add', 'PagesController@create')->name('pages.add');
+            $router->get('{id}/edit', 'PagesController@edit')->name('pages.edit');
         });
 
         $router->group(['prefix' => 'users'], function($router){

@@ -50,15 +50,14 @@ class PagesController extends ApiBaseController
 
             $page->title = $data['title'];
             $page->content = $data['content'];
-            $page->layout = $data['layout'];
-            $page->published_at = ($data['status'] == 'published') ? Carbon::now() : null;
+            //$page->layout = $data['layout'];
+            //$page->published_at = ($data['status'] == 'published') ? Carbon::now() : null;
             $page->user_id = Auth::user()->id;
 
             $page->save();
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
 
         return $this->item($page, new PageTransformer());
     }
@@ -122,7 +121,6 @@ class PagesController extends ApiBaseController
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
-
-        return response()->json($layouts);
+        return response()->json(['data' =>$layouts]);
     }
 }

@@ -14,5 +14,5 @@ return [
         'status' => Copya\Eloquent\Status::class,
     ],
 
-    'layouts' => 'resources/views/layout/frontend',
+    'layouts' => 'resources/views/vendor/copya/layouts/frontend',
 ];

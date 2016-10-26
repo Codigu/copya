@@ -3,7 +3,7 @@
  * AngularJS directive for Pages Portlets jQuery plugin
  * ============================================================ */
 
-angular.module('app')
+angular.module('copya')
     .directive('pgPortlet', ['$parse', function($parse) {
         return {
             restrict: 'A',

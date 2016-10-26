@@ -4,7 +4,7 @@
  * effect for tab transitions. 
  * ============================================================ */
 
-angular.module('app')
+angular.module('copya')
     .directive('pgTabDropdownfx', function() {
         return {
             link: function(scope, element, attrs) {

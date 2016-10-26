@@ -4,7 +4,7 @@
  * effect for tab transitions. 
  * ============================================================ */
 
-angular.module('app')
+angular.module('copya')
     .directive('pgTab', ['$parse', function($parse) {
         return {
             link: function(scope, element, attrs) {
