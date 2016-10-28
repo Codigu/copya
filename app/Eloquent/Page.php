@@ -26,4 +26,9 @@ class Page extends Model
         ];
     }
 
+    public function menus()
+    {
+        return $this->morphMany('Copya\Eloquent\Menu', 'menuable');
+    }
+
 }

@@ -3,22 +3,20 @@
 namespace Copya\Http\Controllers\API;
 
 use Carbon\Carbon;
-use Copya\Http\Controllers\API\ApiBaseController;
 use Exception;
-use Illuminate\Http\Request;
 use Copya\Transformers\PageTransformer;
 use Copya\Http\Requests\PageRequest;
 use Auth;
 use Copya\Eloquent\Menu;
 
-class PagesController extends ApiBaseController
+class NavigationController extends ApiBaseController
 {
     protected $model;
 
     public function __construct()
     {
         parent::__construct();
-        if (is_null($model = config('copya.models.page'))) {
+        if (is_null($model = config('copya.models.navigation'))) {
             throw new RuntimeException('Unable to determine user model from configuration.');
         }
 
@@ -28,18 +26,19 @@ class PagesController extends ApiBaseController
 
     public function index()
     {
-        return $this->collection($this->model->all(), new PageTransformer);
+        //return $this->collection($this->model->all(), new PageTransformer);
+        return response()->json(['data' => $this->model->all()]);
     }
 
     public function show($id)
     {
-        try {
+        /*try {
             $page = $this->model->find($id);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
-        return $this->item($page, new PageTransformer);
+        return $this->item($page, new PageTransformer);*/
     }
 
     public function store(PageRequest $request)
@@ -72,6 +71,7 @@ class PagesController extends ApiBaseController
         return $this->item($page, new PageTransformer());
     }
 
+    /*
     public function update(PageRequest $request, $id)
     {
         $data = $request->except(['errors', 'id', 'trashed', 'slug']);
@@ -132,5 +132,5 @@ class PagesController extends ApiBaseController
         }
 
         return response()->json(['data' =>$layouts]);
-    }
+    }*/
 }

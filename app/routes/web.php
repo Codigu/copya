@@ -36,12 +36,14 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
             $router->get('{id}/edit', 'PagesController@edit')->name('pages.edit');
         });
 
+        $router->group(['prefix' => 'navigations'], function($router){
+            $router->get('/', 'PagesController@index')->name('navigations.index');
+            $router->get('/add', 'PagesController@index')->name('navigations.add');
+        });
+
         $router->group(['prefix' => 'users'], function($router){
             $router->get('/', 'UsersController@index')->name('users');
             $router->get('/add', 'UsersController@index')->name('add.user');
         });
-
-
-
     });
 });
