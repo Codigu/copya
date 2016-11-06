@@ -51,19 +51,19 @@ class SetupCopyaTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('navigation_items', function(Blueprint $table){
+        Schema::create('menu_navigation', function(Blueprint $table){
             $table->increments('id');
             $table->integer('navigation_id')->unsigned();
             $table->integer('menu_id')->unsigned();
             $table->integer('weight')->default(0);
-            $table->integer('parent_id')->unsigned();
-            $table->string('url');
-            $table->string('name');
-            $table->string('target',25);
-            $table->text('description');
-            $table->boolean('active');
-            $table->string('rel',50);
-            $table->boolean('secure');
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->string('url')->nullable();
+            $table->string('name')->nullable();
+            $table->string('target',25)->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('active')->default(true);
+            $table->string('rel',50)->nullable();
+            $table->boolean('secure')->default(false);
             $table->timestamps();
 
             $table->foreign('navigation_id')->references('id')->on('navigations')
@@ -72,7 +72,7 @@ class SetupCopyaTables extends Migration
             $table->foreign('menu_id')->references('id')->on('menus')
                 ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('parent_id')->references('id')->on('navigation_items')
+            $table->foreign('parent_id')->references('id')->on('menus')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
 
@@ -85,10 +85,10 @@ class SetupCopyaTables extends Migration
      */
     public function down()
     {
-        Schema::drop('pages');
+        Schema::drop('menu_navigation');
         Schema::drop('menus');
         Schema::drop('navigations');
         Schema::drop('links');
-        Schema::drop('navigation_items');
+        Schema::drop('pages');
     }
 }

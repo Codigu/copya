@@ -37,8 +37,9 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
         });
 
         $router->group(['prefix' => 'navigations'], function($router){
-            $router->get('/', 'PagesController@index')->name('navigations.index');
-            $router->get('/add', 'PagesController@index')->name('navigations.add');
+            $router->get('/', function(){
+                return view('vendor.copya.admin.view');
+            })->name('navigations.index');
         });
 
         $router->group(['prefix' => 'users'], function($router){

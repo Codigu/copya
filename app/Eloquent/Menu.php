@@ -14,4 +14,12 @@ class Menu extends Model
     {
         return $this->morphTo();
     }
+
+    public function menus()
+    {
+        return $this->belongsToMany('Copya\Eloquent\Menu')
+            ->withTimestamps();
+    }
+
+
 }

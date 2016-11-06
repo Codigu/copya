@@ -5,7 +5,7 @@
             <div class="panel-title">Navigations
             </div>
             <div class="btn-group pull-right m-b-10">
-                <button type="button" class="btn btn-default" ng-click="newNavigation()">Add new</button>
+                <button type="button" class="btn btn-default" ng-click="toggleSlideUpSize()">Add new</button>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -26,25 +26,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="page in pages" ng-click="editNavigation(page.id)">
+                        <tr ng-repeat="navigation in navigations" ng-click="editNavigation(page.id)">
                             <td class="v-align-middle">
                                 <div class="checkbox ">
-                                    <input type="checkbox" value="{{ page.id }}" id="checkbox{{ page.id }}" ng-click="selectRow($event)">
-                                    <label for="checkbox{{ page.id }}"></label>
+                                    <input type="checkbox" value="{{ navigation.id }}" id="checkbox{{ navigation.id }}" ng-click="selectRow($event)">
+                                    <label for="checkbox{{ navigation.id }}"></label>
                                 </div>
                             </td>
                             <td class="v-align-middle ">
-                                <p>{{ page.title }}</p>
+                                <p><a ui-sref="navigations.show({id: navigation.id})">{{ navigation.display_name }}</a></p>
                             </td>
                             <td class="v-align-middle">
-                                <p>{{ page.status }}</p>
-                            </td>
-                            <td class="v-align-middle">
-                                <p>{{ page.excerpt | limitTo: 50 }}</p>
-                            </td>
-
-                            <td class="v-align-middle">
-                                <p>{{ page.updated_at }}</p>
+                                <p></p>
                             </td>
                         </tr>
                     </tbody>
@@ -53,4 +46,41 @@
         </div>
     </div>
     <!-- END PANEL -->
+</div>
+
+<div class="modal fade slide-up disable-scroll" id="modalSlideUp" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal-dialog ">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                    </button>
+                    <h5><span class="semi-bold">Navigation</span></h5>
+                </div>
+                <div class="modal-body">
+                    <form id="form-navigation" class="form-horizontal" ng-submit="submitNavigationForm(navigation_.$valid)" role="form" autocomplete="off" name="navigation_" novalidate>
+                        <div class="form-group-attached">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div pg-form-group class="form-group form-group-default">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Navigation Name" name="name" ng-class="{'error': navigation_.title.$invalid && !navigation_.title.$pristine}" ng-model="navigation.name" required>
+                                        <!--<label class="error" for="name" ng-show="navigation_.name.$invalid && !navigation_.name.$pristine">This field is required.</label>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4 m-t-10 sm-m-t-10">
+                                <button type="submit" class="btn btn-primary btn-block m-t-5">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
 </div>

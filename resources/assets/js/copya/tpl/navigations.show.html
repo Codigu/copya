@@ -1,0 +1,48 @@
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <div class="panel-title">
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ items }}
+                    <div ui-tree data-max-depth="2">
+                        <ol ui-tree-nodes="" ng-model="items">
+                            <li ng-repeat="item in items" ui-tree-node>
+                                <div ui-tree-handle>
+                                    {{item.url}}
+                                </div>
+                                <ol ui-tree-nodes="" ng-model="item.items">
+                                    <li ng-repeat="subItem in item.items" ui-tree-node>
+                                        <div ui-tree-handle>
+                                            {{subItem.url}}
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                    <button ng-click="saveNavigationMenu()">Save</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="menuable">
+                        <ul>
+                            <li ng-repeat="menu in menus">
+                                <input type="checkbox" name="menu-select" ng-click="selectMenu(menu)">
+                                {{ menu.url }}
+                            </li>
+                        </ul>
+                        <button ng-click="addToNavigation()">Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>

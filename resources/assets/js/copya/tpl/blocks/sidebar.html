@@ -38,9 +38,9 @@
       <!-- START SIDEBAR MENU -->
       <div class="sidebar-menu">
         <!-- BEGIN SIDEBAR MENU ITEMS-->
-        <ul class="menu-items">
-          <li ng-repeat="(key, item) in items" ng-class="{'open m-t-30': item.length == 1, 'open active':includes('app.item') }" >
-            <a ui-sref="app.dashboard" class="detailed" ng-show="item.length == 1">
+        <ul class="menu-items m-t-30">
+          <li ng-repeat="(key, item) in items" ng-class="{'open ': item.length == 1, 'open active':includes('app.item') }" >
+            <a ui-sref="{{ item[0].nav_name }}" class="detailed" ng-show="item.length == 1">
               <span class="title">{{ item[0].nav_name }}</span>
             </a>
             <span class="icon-thumbnail" ng-show="item.length == 1"><i class="pg-home"></i></span>

@@ -1,52 +1,56 @@
 'use strict';
 
-function NavigationCtrl($scope, $sce, $state, $stateParams, pagesService, layoutService) {
-    $scope.page = {};
-    $scope.layouts = {};
-    $scope.pages = [];
+function NavigationCtrl($scope, $sce, $state, $stateParams, navigationService, menuService) {
+    $scope.navigations = [];
+    $scope.modal = {};
+    $scope.modal.slideUp = "default";
+    $scope.modal.stickUp = "default";
+    $scope.navigation = {};
+    $scope.items = [];
+    $scope.menus = [];
+    $scope.selectedMenu = [];
 
+    /*$scope.items = [{
+        url: "Item 1", // this object will be referenced as the $item on scope
+    }, {
+        url: "Item 2",
+    },{
+        url: "Item 3",
+        "items": [
+            {
+               url: "Test"
+            },
+        ]
+    }];*/
 
-    $scope.trustAsHtml = function(value) {
-        return $sce.trustAsHtml(value);
-    };
-
-    $scope.summernote_options = {
-        height: 200,
-        onfocus: function(e) {
-            $('body').addClass('overlay-disabled');
-        },
-        onblur: function(e) {
-            $('body').removeClass('overlay-disabled');
+    $scope.toggleSlideUpSize = function() {
+        var size = $scope.modal.slideUp;
+        var modalElem = $('#modalSlideUp');
+        if (size == "mini") {
+            $('#modalSlideUpSmall').modal('show')
+        } else {
+            $('#modalSlideUp').modal('show');
+            if (size == "default") {
+                modalElem.children('.modal-dialog').removeClass('modal-lg');
+            } else if (size == "full") {
+                modalElem.children('.modal-dialog').addClass('modal-lg');
+            }
         }
     };
 
-    $scope.focus = function(e) {
-        $('body').addClass('overlay-disabled');
-    };
-
-    $scope.blur = function(e) {
-        $('body').removeClass('overlay-disabled');
-    };
-
-    $scope.submitForm = function(isValid) {
+    $scope.submitNavigationForm = function(isValid) {
         // check to make sure the form is completely valid
         if (isValid) {
-            if($scope.page.id){
-                pagesService.update({id: $scope.page.id}, $scope.page, function(result){
-                    alert('Page has been saved.');
-                    $state.go('pages.index');
-                }, function(err){
-                    console.log(err);
-                });
-            } else {
-                pagesService.save({}, $scope.page, function(result){
-                    alert('Page has been saved.');
-                    $state.go('pages.index');
-                }, function(err){
-                    console.log(err);
-                });
-            }
-
+            navigationService.save({}, $scope.navigation, function(result){
+                //$scope.toggleSlideUpSize();
+                $('#modalSlideUp').modal('hide');
+                $scope.navigations.push(result.data);
+                $scope.navigation = {};
+                $scope.navigation_.$setUntouched();
+                $scope.navigation_.$setPristine();
+            }, function(err){
+                console.log(err);
+            });
         }
     };
 
@@ -58,38 +62,58 @@ function NavigationCtrl($scope, $sce, $state, $stateParams, pagesService, layout
         $state.go('pages.edit', {id: id});
     };
 
-    if($state.is('pages.add')){
-        layoutService.query({}, function(result){
-            $scope.layouts = result.data;
-        }, function(err){
-            alert(err);
-        });
-    } else if($state.is('pages.index')){
-        pagesService.query({}, function(result){
-            $scope.pages = result.data;
+    $scope.selectMenu = function(menu){
+        $scope.selectedMenu.push(menu);
+    };
+
+    $scope.addToNavigation = function(){
+        $scope.items = $scope.items.concat($scope.selectedMenu);
+
+        var index;
+
+        for (index = 0; index < $scope.selectedMenu.length; ++index) {
+            var itemIndex = $scope.menus.indexOf($scope.selectedMenu[index]);
+            $scope.menus.splice(itemIndex, 1);
+        }
+
+        $scope.selectedMenu = [];
+    };
+
+    $scope.saveNavigationMenu = function(){
+        navigationService.update({id: $stateParams.id}, {id: $stateParams.id, items: $scope.items}, function(result){
+            console.log('Saved')
         }, function(err){
             console.log(err);
         });
-    } else if($state.is('pages.edit')){
-        layoutService.query({}, function(result){
-            $scope.layouts = result.data;
+    };
+
+    if($state.is('navigations.index')){
+        navigationService.query({}, function(result){
+            $scope.navigations = result.data;
+
         }, function(err){
-            alert(err);
+            console.log(err);
+        });
+    } else if($state.is('navigations.show')){
+        navigationService.get({id: $stateParams.id}, function(result){
+            $scope.navigations = result.data;
+            $scope.items = result.data.menu;
+        }, function(err){
+            console.log(err);
         });
 
-        pagesService.query({id: $stateParams.id}, function(result){
-            $scope.page = result.data;
-            console.log = result;
+        menuService.query({nav_id: $stateParams.id}, function(result){
+            $scope.menus = result.data
         }, function(err){
-            console.log(err);
+
         });
     }
 }
 
-PagesCtrl.$inject = ['$scope', '$sce', '$state', '$stateParams', 'pagesService', 'layoutService'];
+NavigationCtrl.$inject = ['$scope', '$sce', '$state', '$stateParams', 'navigationService', 'menuService'];
 
-angular.module('copya', ['summernote'])
+angular.module('copya', ['ui.tree'])
     // Chart controller 
-    .controller('PagesCtrl', PagesCtrl);
+    .controller('NavigationCtrl', NavigationCtrl);
 
 
