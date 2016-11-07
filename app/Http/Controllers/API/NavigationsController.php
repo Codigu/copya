@@ -47,8 +47,22 @@ class NavigationsController extends ApiBaseController
     public function update(NavigationRequest $request, $id)
     {
         //$items = $request->get('items');
-        if($request->has('items')){
+        if($request->has('items') && count($request->get('items')) > 0){
             return $this->saveNavigationItems($request->get('id'), $request->get('items'));
+        } else if( $request->has('update') && $request->get('update') == 'item_detail'){
+            $id = $request->get('menu_id');
+            $navigation = Navigation::find($request->get('navigation_id'));
+            $data = array(
+                'name' => $request->get('name'),
+                'target' => $request->get('target'),
+                'description' => $request->get('description'),
+                'active' => (bool) $request->get('active'),
+                'rel' => $request->get('rel'),
+                'secure' => (bool) $request->get('secure'),
+            );
+
+            $navigation->menus()->syncWithoutDetaching([$id => $data]);
+
         }
 
         try {
@@ -57,7 +71,8 @@ class NavigationsController extends ApiBaseController
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
-        return $this->item($page, new PageTransformer());
+        return response()->json(['data' => "Item Detail Successful"]);
+        //return $this->item($navigation, new PageTransformer());
     }
 
     private function saveNavigationItems($id, $items)

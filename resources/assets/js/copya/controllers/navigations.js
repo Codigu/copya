@@ -9,19 +9,7 @@ function NavigationCtrl($scope, $sce, $state, $stateParams, navigationService, m
     $scope.items = [];
     $scope.menus = [];
     $scope.selectedMenu = [];
-
-    /*$scope.items = [{
-        url: "Item 1", // this object will be referenced as the $item on scope
-    }, {
-        url: "Item 2",
-    },{
-        url: "Item 3",
-        "items": [
-            {
-               url: "Test"
-            },
-        ]
-    }];*/
+    $scope.itemDetail = {};
 
     $scope.toggleSlideUpSize = function() {
         var size = $scope.modal.slideUp;
@@ -66,6 +54,19 @@ function NavigationCtrl($scope, $sce, $state, $stateParams, navigationService, m
         $scope.selectedMenu.push(menu);
     };
 
+    $scope.submitItemDetailForm = function(isValid){
+        if (isValid) {
+            navigationService.update({ id: $stateParams.id, update: "item_detail"}, $scope.itemDetail, function(result){
+                $('#modalItemDetails').modal('hide');
+                $scope.itemDetail = {};
+                $scope.itemDetail_.$setUntouched();
+                $scope.itemDetail_.$setPristine();
+            }, function(err){
+                console.log(err);
+            });
+        }
+    };
+
     $scope.addToNavigation = function(){
         $scope.items = $scope.items.concat($scope.selectedMenu);
 
@@ -85,6 +86,16 @@ function NavigationCtrl($scope, $sce, $state, $stateParams, navigationService, m
         }, function(err){
             console.log(err);
         });
+    };
+
+    $scope.itemDetails = function(item){
+        $scope.itemDetail = item.$modelValue;
+        var modalElem = $('#modalItemDetails');
+
+        $('#modalItemDetails').modal('show');
+
+        modalElem.children('.modal-dialog').addClass('modal-lg');
+
     };
 
     if($state.is('navigations.index')){

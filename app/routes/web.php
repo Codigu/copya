@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Config;
 |
 */
 
-/* front end pages */
-Route::get('/pages', function () {
-    return "Return List of Pages";
-});
-
-Route::get('/page/{slug}', 'FrontEnd\PagesController@show');
-
-
 /* admin pages */
 
 Route::group(['middleware' => ['web', 'auth']], function ($router) {
@@ -48,3 +40,14 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
         });
     });
 });
+
+
+
+
+/* front end pages */
+Route::get('/pages', function () {
+    return "Return List of Pages";
+});
+
+Route::get('{slug}', 'FrontEnd\PagesController@show');
+

@@ -25,7 +25,7 @@ class NavigationRequest extends FormRequest
      */
     public function rules()
     {
-        if(!$this->get('id')){
+        if($this->get('items')){
             return [
                 'name' => 'required',
             ];

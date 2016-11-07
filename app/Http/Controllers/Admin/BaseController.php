@@ -11,7 +11,7 @@ class BaseController extends Controller
 
     public function __construct(RouteGenerator $routeGenerator)
     {
-        $routes = $routeGenerator->getRoutes();
+        /*$routes = $routeGenerator->getRoutes();
 
         $navigation = [];
 
@@ -23,7 +23,13 @@ class BaseController extends Controller
             );
         }
 
-        $this->sidenav = $navigation;
+        $this->sidenav = $navigation;*/
+
+        /** TODO::improve implementation
+         * all admin routes should return to /admin
+         */
+
+
     }
 
     public function getSideNav()
