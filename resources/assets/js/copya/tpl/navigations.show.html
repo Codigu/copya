@@ -1,0 +1,124 @@
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <div class="panel-title">
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ items }}
+                    <div ui-tree data-max-depth="2">
+                        <ol ui-tree-nodes="" ng-model="items">
+                            <li ng-repeat="item in items" ui-tree-node>
+                                <div ui-tree-handle>
+                                    {{item.url}}
+                                    <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                                <ol ui-tree-nodes="" ng-model="item.items">
+                                    <li ng-repeat="subItem in item.items" ui-tree-node>
+                                        <div ui-tree-handle>
+                                            {{subItem.url}}
+                                            <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                    <button ng-click="saveNavigationMenu()">Save</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="menuable">
+                        <ul>
+                            <li ng-repeat="menu in menus">
+                                <input type="checkbox" name="menu-select" ng-click="selectMenu(menu)">
+                                {{ menu.url }}
+                            </li>
+                        </ul>
+                        <button ng-click="addToNavigation()">Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>
+
+
+<div class="modal fade slide-up disable-scroll" id="modalItemDetails" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal-dialog ">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-navigation" class="form-horizontal" ng-submit="submitItemDetailForm(itemDetail_.$valid)" role="form" autocomplete="off" name="itemDetail_" novalidate>
+                        <div class="form-group-attached">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-group-default">
+                                        <div>Url Slug</div>
+                                        <span>{{ itemDetail.url }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-3 control-label">Menu Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="name" placeholder="Menu name" name="name" ng-class="{'error': itemDetail_.name.$invalid && !itemDetail_.name.$pristine}" ng-model="itemDetail.name" required>
+                                            <label class="error" for="name" ng-show="itemDetail_.name.$invalid && !itemDetail_.name.$pristine">This field is required.</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="target" class="col-sm-3 control-label">Target</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="target" placeholder='Target (ie "_parent"' name="target"  ng-model="itemDetail.target" >
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rel" class="col-sm-3 control-label">Rel</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="rel" placeholder="Rel" name="rel"  ng-model="itemDetail.rel" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class="col-sm-3 control-label">Description</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" id="description" placeholder="Description" ng-model="itemDetail.description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="checkbox check-success col-md-4">
+                                                <input type="checkbox" checked="checked" value="1" id="checkbox-active">
+                                                <label for="checkbox-active">Active</label>
+                                            </div>
+                                            <div class="checkbox check-success col-md-4">
+                                                <input type="checkbox" value="1" id="checkbox-secure">
+                                                <label for="checkbox-secure">Secure?</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4 m-t-10 sm-m-t-10">
+                                <button type="submit" class="btn btn-primary btn-block m-t-5">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

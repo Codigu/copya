@@ -92,7 +92,50 @@ function routes($stateProvider, $urlRouterProvider, $httpProvider) {
                         });
                 }]
             }
+        })
+        .state('navigations', {
+            abstract: true,
+            url: '/',
+            templateUrl: "js/copya/tpl/app.html",
+        })
+        .state('navigations.index', {
+            url: "navigations",
+            templateUrl: "js/copya/tpl/navigations.index.html",
+            controller: 'NavigationCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                        .then(function() {
+                            return $ocLazyLoad.load([
+                                'js/copya/controllers/navigations.js'
+                            ]);
+                        });
+                }]
+            }
+        })
+        .state('navigations.show', {
+            url: "navigations/{id}/show",
+            templateUrl: "js/copya/tpl/navigations.show.html",
+            controller: 'NavigationCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                            'nestable'
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                        .then(function() {
+                            return $ocLazyLoad.load([
+                                'js/copya/controllers/navigations.js'
+                            ]);
+                        });
+                }]
+            }
         });
+
 
 }
 

@@ -7,28 +7,29 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
-class Page extends Model
+
+class Navigation extends Model
 {
     use Sluggable;
-    use SoftDeletes;
+    //use SoftDeletes;
     use SluggableScopeHelpers;
 
-    protected $table = 'pages';
-    protected $date = ['published_at', 'deleted_at'];
-    protected $fillable = ['title', 'slug', 'content', 'published_at', 'user_id'];
+    protected $table = 'navigations';
+    protected $fillable = ['name', 'display_name'];
 
     public function sluggable()
     {
         return [
-            'slug' => [
-                'source' => 'title'
+            'name' => [
+                'source' => 'display_name'
             ]
         ];
     }
 
     public function menus()
     {
-        return $this->morphMany('Copya\Eloquent\Menu', 'menuable');
+        return $this->belongsToMany('Copya\Eloquent\Menu')
+            ->withPivot(['parent_id','name', 'url'])
+            ->withTimestamps();
     }
-
 }

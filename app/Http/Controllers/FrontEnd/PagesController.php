@@ -36,6 +36,6 @@ class PagesController extends BaseController
             return abort(404);
         }
 
-        return view('copya.front.pages.show', array('page' => $page));
+        return view('vendor.copya.front.pages.show', array('page' => $page));
     }
 }

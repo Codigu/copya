@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Config;
 |
 */
 
-/* front end pages */
-Route::get('/pages', function () {
-    return "Return List of Pages";
-});
-
-Route::get('/page/{slug}', 'FrontEnd\PagesController@show');
-
-
 /* admin pages */
 
 Route::group(['middleware' => ['web', 'auth']], function ($router) {
@@ -36,12 +28,26 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
             $router->get('{id}/edit', 'PagesController@edit')->name('pages.edit');
         });
 
+        $router->group(['prefix' => 'navigations'], function($router){
+            $router->get('/', function(){
+                return view('vendor.copya.admin.view');
+            })->name('navigations.index');
+        });
+
         $router->group(['prefix' => 'users'], function($router){
             $router->get('/', 'UsersController@index')->name('users');
             $router->get('/add', 'UsersController@index')->name('add.user');
         });
-
-
-
     });
 });
+
+
+
+
+/* front end pages */
+Route::get('/pages', function () {
+    return "Return List of Pages";
+});
+
+Route::get('{slug}', 'FrontEnd\PagesController@show');
+

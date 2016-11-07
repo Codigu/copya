@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Copya\Transformers\PageTransformer;
 use Copya\Http\Requests\PageRequest;
 use Auth;
+use Copya\Eloquent\Menu;
 
 class PagesController extends ApiBaseController
 {
@@ -55,6 +56,15 @@ class PagesController extends ApiBaseController
             $page->user_id = Auth::user()->id;
 
             $page->save();
+
+            /*
+             * save the slug to menuable
+             */
+
+            $menu = new Menu(['url' => $page->slug]);
+            $page->menus()->save($menu);
+
+
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

@@ -53,8 +53,36 @@
         }
     </script>
     <!-- Styles -->
-    <link href="/css/copya-dashboard.css" rel="stylesheet">
+    <link href="../node_modules/angular-ui-tree/dist/angular-ui-tree.css" rel="stylesheet">
+    <link href="assets/css/copya-dashboard.css" rel="stylesheet">
+    <style>
+        .angular-ui-tree-handle{
+            background: #f8faff;
+            padding: 10px 10px;
+            border: solid 1px #dae2ea
+        }
 
+        .angular-ui-tree-handle {
+            background: #f8faff;
+            border: 1px solid #dae2ea;
+            color: #7c9eb2;
+            padding: 10px 10px;
+        }
+
+        .angular-ui-tree-handle:hover {
+            color: #438eb9;
+            background: #f4f6f7;
+            border-color: #dce2e8;
+        }
+
+        .angular-ui-tree-placeholder {
+            background: #f0f9ff;
+            border: 2px dashed #bed2db;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body  class="fixed-header" ng-class="{
 'bg-master-lighter': is('copya.extra.timeline'),

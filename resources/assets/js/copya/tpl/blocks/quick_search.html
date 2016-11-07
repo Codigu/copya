@@ -1,21 +1,22 @@
- <!-- START OVERLAY -->
+<!--
+ &lt;!&ndash; START OVERLAY &ndash;&gt;
     <div ng-controller="SearchCtrl" class="overlay" style="display: none" pg-search> 
-      <!-- BEGIN Overlay Content !-->
+      &lt;!&ndash; BEGIN Overlay Content !&ndash;&gt;
       <div class="overlay-content has-results m-t-20">
-        <!-- BEGIN Overlay Header !-->
+        &lt;!&ndash; BEGIN Overlay Header !&ndash;&gt;
         <div class="container-fluid">
-          <!-- BEGIN Overlay Logo !-->
+          &lt;!&ndash; BEGIN Overlay Logo !&ndash;&gt;
           <img class="overlay-brand" src="assets/copya/img/logo.png" alt="logo" data-src="assets/copya/img/logo.png" ui-jq="unveil" data-src-retina="assets/copya/img/logo_2x.png" width="78" height="22">
-          <!-- END Overlay Logo !-->
-          <!-- BEGIN Overlay Close !-->
+          &lt;!&ndash; END Overlay Logo !&ndash;&gt;
+          &lt;!&ndash; BEGIN Overlay Close !&ndash;&gt;
           <a href="" class="close-icon-light overlay-close text-black fs-16" data-search="closeButton">
             <i class="pg-close"></i>
           </a>
-          <!-- END Overlay Close !-->
+          &lt;!&ndash; END Overlay Close !&ndash;&gt;
         </div>
-        <!-- END Overlay Header !-->
+        &lt;!&ndash; END Overlay Header !&ndash;&gt;
         <div class="container-fluid">
-          <!-- BEGIN Overlay Controls !-->
+          &lt;!&ndash; BEGIN Overlay Controls !&ndash;&gt;
           <input data-search="searchField" id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false" ng-model="search.query" ng-change="liveSearch()" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
           <br>
           <div class="inline-block">
@@ -27,9 +28,9 @@
           <div class="inline-block m-l-10">
             <p class="fs-13">Press enter to search</p>
           </div>
-          <!-- END Overlay Controls !-->
+          &lt;!&ndash; END Overlay Controls !&ndash;&gt;
         </div>
-        <!-- BEGIN Overlay Search Results, This part is for demo purpose, you can add anything you like !-->
+        &lt;!&ndash; BEGIN Overlay Search Results, This part is for demo purpose, you can add anything you like !&ndash;&gt;
         <div class="container-fluid">
           <span>
                 <strong>suggestions :</strong>
@@ -40,98 +41,98 @@
             <p class="bold">Pages Search Results</p>
             <div class="row">
               <div class="col-md-6">
-                <!-- BEGIN Search Result Item !-->
+                &lt;!&ndash; BEGIN Search Result Item !&ndash;&gt;
                 <div class="">
-                  <!-- BEGIN Search Result Item Thumbnail !-->
+                  &lt;!&ndash; BEGIN Search Result Item Thumbnail !&ndash;&gt;
                   <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
                     <div>
                       <img width="50" height="50" src="assets/copya/img/profiles/avatar.jpg" data-src="assets/copya/img/profiles/avatar.jpg" ui-jq="unveil" data-src-retina="assets/copya/img/profiles/avatar2x.jpg" alt="">
                     </div>
                   </div>
-                  <!-- END Search Result Item Thumbnail !-->
+                  &lt;!&ndash; END Search Result Item Thumbnail !&ndash;&gt;
                   <div class="p-l-10 inline p-t-5">
                     <h5 class="m-b-5"><span class="semi-bold result-name">{{search.query}}</span> on pages</h5>
                     <p class="hint-text">via john smith</p>
                   </div>
                 </div>
-                <!-- END Search Result Item !-->
-                <!-- BEGIN Search Result Item !-->
+                &lt;!&ndash; END Search Result Item !&ndash;&gt;
+                &lt;!&ndash; BEGIN Search Result Item !&ndash;&gt;
                 <div class="">
-                  <!-- BEGIN Search Result Item Thumbnail !-->
+                  &lt;!&ndash; BEGIN Search Result Item Thumbnail !&ndash;&gt;
                   <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
                     <div>T</div>
                   </div>
-                  <!-- END Search Result Item Thumbnail !-->
+                  &lt;!&ndash; END Search Result Item Thumbnail !&ndash;&gt;
                   <div class="p-l-10 inline p-t-5">
                     <h5 class="m-b-5"><span class="semi-bold result-name">{{search.query}}</span> related topics</h5>
                     <p class="hint-text">via pages</p>
                   </div>
                 </div>
-                <!-- END Search Result Item !-->
-                <!-- BEGIN Search Result Item !-->
+                &lt;!&ndash; END Search Result Item !&ndash;&gt;
+                &lt;!&ndash; BEGIN Search Result Item !&ndash;&gt;
                 <div class="">
-                  <!-- BEGIN Search Result Item Thumbnail !-->
+                  &lt;!&ndash; BEGIN Search Result Item Thumbnail !&ndash;&gt;
                   <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
                     <div><i class="fa fa-headphones large-text "></i>
                     </div>
                   </div>
-                  <!-- END Search Result Item Thumbnail !-->
+                  &lt;!&ndash; END Search Result Item Thumbnail !&ndash;&gt;
                   <div class="p-l-10 inline p-t-5">
                     <h5 class="m-b-5"><span class="semi-bold result-name">{{search.query}}</span> music</h5>
                     <p class="hint-text">via pagesmix</p>
                   </div>
                 </div>
-                <!-- END Search Result Item !-->
+                &lt;!&ndash; END Search Result Item !&ndash;&gt;
               </div>
               <div class="col-md-6">
-                <!-- BEGIN Search Result Item !-->
+                &lt;!&ndash; BEGIN Search Result Item !&ndash;&gt;
                 <div class="">
-                  <!-- BEGIN Search Result Item Thumbnail !-->
+                  &lt;!&ndash; BEGIN Search Result Item Thumbnail !&ndash;&gt;
                   <div class="thumbnail-wrapper d48 circular bg-info text-white inline m-t-10">
                     <div><i class="fa fa-facebook large-text "></i>
                     </div>
                   </div>
-                  <!-- END Search Result Item Thumbnail !-->
+                  &lt;!&ndash; END Search Result Item Thumbnail !&ndash;&gt;
                   <div class="p-l-10 inline p-t-5">
                     <h5 class="m-b-5"><span class="semi-bold result-name">{{search.query}}</span> on facebook</h5>
                     <p class="hint-text">via facebook</p>
                   </div>
                 </div>
-                <!-- END Search Result Item !-->
-                <!-- BEGIN Search Result Item !-->
+                &lt;!&ndash; END Search Result Item !&ndash;&gt;
+                &lt;!&ndash; BEGIN Search Result Item !&ndash;&gt;
                 <div class="">
-                  <!-- BEGIN Search Result Item Thumbnail !-->
+                  &lt;!&ndash; BEGIN Search Result Item Thumbnail !&ndash;&gt;
                   <div class="thumbnail-wrapper d48 circular bg-complete text-white inline m-t-10">
                     <div><i class="fa fa-twitter large-text "></i>
                     </div>
                   </div>
-                  <!-- END Search Result Item Thumbnail !-->
+                  &lt;!&ndash; END Search Result Item Thumbnail !&ndash;&gt;
                   <div class="p-l-10 inline p-t-5">
                     <h5 class="m-b-5">Tweats on<span class="semi-bold result-name">{{search.query}}</span></h5>
                     <p class="hint-text">via twitter</p>
                   </div>
                 </div>
-                <!-- END Search Result Item !-->
-                <!-- BEGIN Search Result Item !-->
+                &lt;!&ndash; END Search Result Item !&ndash;&gt;
+                &lt;!&ndash; BEGIN Search Result Item !&ndash;&gt;
                 <div class="">
-                  <!-- BEGIN Search Result Item Thumbnail !-->
+                  &lt;!&ndash; BEGIN Search Result Item Thumbnail !&ndash;&gt;
                   <div class="thumbnail-wrapper d48 circular text-white bg-danger inline m-t-10">
                     <div><i class="fa fa-google-plus large-text "></i>
                     </div>
                   </div>
-                  <!-- END Search Result Item Thumbnail !-->
+                  &lt;!&ndash; END Search Result Item Thumbnail !&ndash;&gt;
                   <div class="p-l-10 inline p-t-5">
                     <h5 class="m-b-5">Circles on<span class="semi-bold result-name">{{search.query}}</span></h5>
                     <p class="hint-text">via google plus</p>
                   </div>
                 </div>
-                <!-- END Search Result Item !-->
+                &lt;!&ndash; END Search Result Item !&ndash;&gt;
               </div>
             </div>
           </div>
         </div>
-        <!-- END Overlay Search Results !-->
+        &lt;!&ndash; END Overlay Search Results !&ndash;&gt;
       </div>
-      <!-- END Overlay Content !-->
+      &lt;!&ndash; END Overlay Content !&ndash;&gt;
     </div>
-    <!-- END OVERLAY -->
+    &lt;!&ndash; END OVERLAY &ndash;&gt;-->
