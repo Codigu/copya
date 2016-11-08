@@ -49,5 +49,5 @@ Route::get('/pages', function () {
     return "Return List of Pages";
 });
 
+Route::get('/', 'FrontEnd\PagesController@showBase');
 Route::get('{slug}', 'FrontEnd\PagesController@show');
-

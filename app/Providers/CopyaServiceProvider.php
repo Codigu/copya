@@ -55,7 +55,7 @@ class CopyaServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the Spark routes.
+     * Define the Copya routes.
      *
      * @return void
      */
