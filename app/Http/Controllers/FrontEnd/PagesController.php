@@ -38,4 +38,15 @@ class PagesController extends BaseController
 
         return view('vendor.copya.front.pages.show', array('page' => $page));
     }
+
+    public function showBase()
+    {
+        $slug = config('copya.base_page');
+        $page = $this->model->findBySlug($slug);
+        if (!$page || $page->published_at == null) {
+            return abort(404);
+        }
+
+        return view('vendor.copya.front.pages.show', array('page' => $page));
+    }
 }
