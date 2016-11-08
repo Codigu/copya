@@ -26,10 +26,12 @@ class NavigationRequest extends FormRequest
     public function rules()
     {
         if($this->get('items')){
+            return [];
+        }
+        else {
             return [
-                'name' => 'required',
+                'name' => 'required'
             ];
         }
-        return [];
     }
 }
