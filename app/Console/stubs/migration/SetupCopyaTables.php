@@ -39,6 +39,7 @@ class SetupCopyaTables extends Migration
         Schema::create('menus', function(Blueprint $table){
             $table->increments('id');
             $table->string('url');
+            $table->string('name');
             $table->string('menuable_id');
             $table->string('menuable_type');
             $table->timestamps();

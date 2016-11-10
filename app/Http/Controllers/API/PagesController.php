@@ -61,7 +61,7 @@ class PagesController extends ApiBaseController
              * save the slug to menuable
              */
 
-            $menu = new Menu(['url' => $page->slug]);
+            $menu = new Menu(['url' => $page->slug, 'name' => $page->title]);
             $page->menus()->save($menu);
 
 
@@ -92,7 +92,14 @@ class PagesController extends ApiBaseController
             $page->published_at = $published_at;
             $page->user_id = Auth::user()->id;
 
+            $menu = $page->menus()->first();
+
+            $menu->url = $page->slug;
+            $menu->name = $page->title;
+
             $page->save();
+            $menu->save();
+
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
