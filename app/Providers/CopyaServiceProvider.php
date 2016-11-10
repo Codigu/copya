@@ -9,6 +9,7 @@ use Copya\Console\CopyaInstallCommand;
 use Laravel\Passport\Passport;
 use Cviebrock\EloquentSluggable\ServiceProvider as SluggableService;
 use Copya\Shortcodes\FormShortcode;
+use Webwizo\Shortcodes\Facades\Shortcode;
 
 
 class CopyaServiceProvider extends ServiceProvider
