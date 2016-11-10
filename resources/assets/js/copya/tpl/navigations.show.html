@@ -10,18 +10,17 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                    {{ items }}
                     <div ui-tree data-max-depth="2">
                         <ol ui-tree-nodes="" ng-model="items">
                             <li ng-repeat="item in items" ui-tree-node>
                                 <div ui-tree-handle>
-                                    {{item.url}}
+                                    {{item.name}}
                                     <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
                                 </div>
                                 <ol ui-tree-nodes="" ng-model="item.items">
                                     <li ng-repeat="subItem in item.items" ui-tree-node>
                                         <div ui-tree-handle>
-                                            {{subItem.url}}
+                                            {{subItem.name}}
                                             <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
                                         </div>
                                     </li>
@@ -36,7 +35,7 @@
                         <ul>
                             <li ng-repeat="menu in menus">
                                 <input type="checkbox" name="menu-select" ng-click="selectMenu(menu)">
-                                {{ menu.url }}
+                                {{ menu.name }}
                             </li>
                         </ul>
                         <button ng-click="addToNavigation()">Add</button>

@@ -13,6 +13,7 @@ class MenuTransformer extends TransformerAbstract
         return [
             'id' => (int) $menu->id,
             'url' => $menu->url,
+            'name' => $menu->name,
             'items' => []
         ];
     }
