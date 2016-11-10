@@ -108,7 +108,6 @@ class CopyaServiceProvider extends ServiceProvider
         $this->app->register('Webwizo\Shortcodes\ShortcodesServiceProvider');
         $this->app->register(SluggableService::class);
 
-
         /*
          * Register shortcodes
          */
