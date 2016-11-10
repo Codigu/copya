@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Copya\Console\CopyaInstallCommand;
 use Laravel\Passport\Passport;
 use Cviebrock\EloquentSluggable\ServiceProvider as SluggableService;
+use Copya\Shortcodes\FormShortcode;
 
 
 class CopyaServiceProvider extends ServiceProvider
@@ -106,5 +107,11 @@ class CopyaServiceProvider extends ServiceProvider
         $this->app->register('Webwizo\Shortcodes\ShortcodesServiceProvider');
         $this->app->register(SluggableService::class);
 
+
+        /*
+         * Register shortcodes
+         */
+
+        Shortcode::register('form', FormShortcode::class);
     }
 }
