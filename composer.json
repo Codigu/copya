@@ -15,7 +15,8 @@
         "laravel/passport": "^1.0",
         "league/fractal": "^0.14.0",
         "cviebrock/eloquent-sluggable": "^4.1.0",
-        "caffeinated/menus": "^3.0"
+        "caffeinated/menus": "^3.0",
+        "webwizo/laravel-shortcodes": "1.0.*"
     },
     "autoload": {
         "psr-4": {

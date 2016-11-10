@@ -103,6 +103,7 @@ class CopyaServiceProvider extends ServiceProvider
 
         $this->app->register('Laravel\Passport\PassportServiceProvider');
         $this->app->register('Caffeinated\Menus\MenusServiceProvider');
+        $this->app->register('Webwizo\Shortcodes\ShortcodesServiceProvider');
         $this->app->register(SluggableService::class);
 
     }
