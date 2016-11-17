@@ -134,6 +134,67 @@ function routes($stateProvider, $urlRouterProvider, $httpProvider) {
                         });
                 }]
             }
+        })
+        .state('forms', {
+            abstract: true,
+            url: '/forms',
+            templateUrl: "js/copya/tpl/app.html",
+        })
+        .state('forms.index', {
+            url: "/index",
+            templateUrl: "js/copya/tpl/forms.index.html",
+            controller: 'FormsCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                        .then(function() {
+                            return $ocLazyLoad.load([
+                                'js/copya/controllers/forms.js'
+                            ]);
+                        });
+                }]
+            }
+        })
+        .state('forms.add', {
+            url: "/add",
+            templateUrl: "js/copya/tpl/pages.form.html",
+            controller: 'PagesCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                            'summernote'
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                        .then(function() {
+                            return $ocLazyLoad.load([
+                                'js/copya/controllers/pages.js'
+                            ]);
+                        });
+                }]
+            }
+        })
+        .state('forms.edit', {
+            url: "/{id}/edit",
+            templateUrl: "js/copya/tpl/pages.form.html",
+            controller: 'PagesCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                            'summernote'
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                        .then(function() {
+                            return $ocLazyLoad.load([
+                                'js/copya/controllers/pages.js'
+                            ]);
+                        });
+                }]
+            }
         });
 
 

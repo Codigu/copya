@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:api']], function ($router){
     $router->resource('pages', 'PagesController');
     $router->resource('navigations', 'NavigationsController');
     $router->resource('menus', 'MenusController');
+    $router->resource('forms', 'FormsController');
 
     $router->get('routes', 'RoutesController@index');
     $router->get('layouts', 'PagesController@getTemplates');

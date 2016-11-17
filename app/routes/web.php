@@ -34,6 +34,12 @@ Route::group(['middleware' => ['web', 'auth']], function ($router) {
             })->name('navigations.index');
         });
 
+        $router->group(['prefix' => 'forms'], function($router){
+            $router->get('/', 'PagesController@index')->name('forms.index');
+            $router->get('/add', 'PagesController@create')->name('forms.add');
+            $router->get('{id}/edit', 'PagesController@edit')->name('forms.edit');
+        });
+
         $router->group(['prefix' => 'users'], function($router){
             $router->get('/', 'UsersController@index')->name('users');
             $router->get('/add', 'UsersController@index')->name('add.user');
@@ -50,6 +56,6 @@ Route::get('/pages', function () {
 });
 
 Route::group(['middleware' => 'copya.menu'], function(){
-    Route::get('/', 'FrontEnd\PagesController@showBase');
+    Route::get('/', 'FrontEnd\PagesController@showBase')->name('home');
     Route::get('{slug}', 'FrontEnd\PagesController@show');
 });

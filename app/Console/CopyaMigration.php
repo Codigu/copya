@@ -4,6 +4,7 @@ namespace Copya\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
+use Exception;
 
 class CopyaMigration extends Command
 {
@@ -51,21 +52,42 @@ class CopyaMigration extends Command
 
     protected function makeMigration()
     {
-        $path = __DIR__ . "/stubs/migration/SetupCopyaTables.php";
-        $migrationFile = base_path("/database/migrations") . "/".date('Y_m_d_His')."_setup_copya_tables.php";
+        $copya_setup = __DIR__ . "/stubs/migration/SetupCopyaTables.php";
+        $copyaSetupMigrationFile = base_path("/database/migrations") . "/" . date('Y_m_d_His') . "_setup_copya_tables.php";
 
-        if(class_exists('SetupCopyaTables')){
+        $form_setup = __DIR__ . "/stubs/migration/CopyaFormMigration.php";
+        $copyaFormMigrationFile = base_path("/database/migrations") . "/" . date('Y_m_d_His') . "_copya_form_migration.php";
+
+        $form_field_seeder = __DIR__ . "/stubs/seeder/FormFieldsSeeder.php";
+        $copyaFormSeederFile = base_path("/database/seeds") . "/FormFieldsSeeder.php";
+
+        try {
+            if (!class_exists('SetupCopyaTables')) {
+                if (!file_exists($copyaSetupMigrationFile) && $fs = fopen($copyaSetupMigrationFile, 'x')) {
+                    fwrite($fs, file_get_contents($copya_setup));
+                    fclose($fs);
+                }
+            }
+
+            if (!class_exists('CopyaFormMigration')) {
+                if (!file_exists($copyaFormMigrationFile) && $fs = fopen($copyaFormMigrationFile, 'x')) {
+                    fwrite($fs, file_get_contents($form_setup));
+                    fclose($fs);
+                }
+            }
+
+            if (!class_exists('FormFieldsSeeder')) {
+                if (!file_exists($copyaFormSeederFile) && $fs = fopen($copyaFormSeederFile, 'x')) {
+                    fwrite($fs, file_get_contents($form_field_seeder));
+                    fclose($fs);
+                }
+            }
+
+        } catch (Exception $e) {
             return false;
         }
 
-        if (!file_exists($migrationFile) && $fs = fopen($migrationFile, 'x')) {
-            fwrite($fs, file_get_contents($path));
-            fclose($fs);
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
 
