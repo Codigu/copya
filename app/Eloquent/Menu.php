@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     protected $table = 'menus';
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'name'];
 
 
     public function menuable()

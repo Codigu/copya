@@ -1,4 +1,4 @@
-@extends('layouts.frontend.'.$page->layout, ['title' => $page->title])
+@extends('vendor.copya.layouts.frontend.'.$page->layout, ['title' => $page->title])
 
 @section('content')
     <h1>{{ $page->title }}</h1>
