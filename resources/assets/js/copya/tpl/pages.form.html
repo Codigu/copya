@@ -27,12 +27,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Status: </label>
-                            <div class="col-sm-9">
-                                <select name="status" title="status" ng-model="page.status">
-                                    <option value="draft">Draft</option>
-                                    <option value="published">Published</option>
-                                </select>
+                            <div class="row" ng-if="page.status != 'trashed'">
+                                <label class="col-sm-3 control-label" >Status: </label>
+                                <div class="col-sm-9">
+                                    <select name="status" title="status" ng-model="page.status">
+                                        <option value="draft">Draft</option>
+                                        <option value="published">Published</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" ng-if="page.status != 'trashed'">
+                                    <button type="button" ng-click="trashPage(page)">Trash</button>
+                                </div>
+                                <div class="col-sm-12" ng-if="page.status == 'trashed'">
+                                    <button type="button" ng-click="restorePage(page)">Restore</button>
+                                    <button type="button" ng-click="deletePage(page)">Delete Permanently</button>
+                                </div>
                             </div>
                         </div>
 
@@ -44,6 +55,8 @@
                                 </select>
                             </div>
                         </div>
+
+
 
                         <div class="row">
                             <div class="col-sm-3">

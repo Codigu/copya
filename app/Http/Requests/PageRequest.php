@@ -25,9 +25,16 @@ class PageRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required',
-            'content' => 'required'
-        ];
+        if($this->has('action') && $this->get('action') == 'restore'){
+            return [
+                'id' => 'exists:pages,id'
+            ];
+        } else {
+            return [
+                'title' => 'required',
+                'content' => 'required'
+            ];
+        }
+
     }
 }

@@ -16,13 +16,20 @@ class PageTransformer extends TransformerAbstract
             throw new RuntimeException('Unable to determine user model from configuration.');
         }
 
+        if($page->deleted_at){
+            $status = 'trashed';
+        } elseif($page->published_at) {
+            $status = 'published';
+        } else {
+            $status = 'trashed';
+        }
+
         return [
             'id' => (int)$page->id,
             'title' => $page->title,
             'slug' => $page->slug,
             'content' => $page->content,
-            'status' => ($page->published_at) ? 'published' : 'draft',
-            'trashed' => ($page->deleted_at) ? true : false,
+            'status' => $status,
             'excerpt' => strip_tags($page->content),
             'layout' => $page->layout,
             'created_at' => date("M-d-Y", strtotime($page->created_at)),

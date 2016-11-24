@@ -50,6 +50,27 @@ function PagesCtrl($scope, $sce, $state, $stateParams, pagesService, layoutServi
         }
     };
 
+    $scope.restorePage = function(page){
+        if(confirm("Are you sure you want to restore this page?")){
+            pagesService.update({id: page.id}, {action: 'restore'}, function(result){
+                page.status = result.data.status;
+            }, function(err){
+
+            });
+        }
+    };
+
+    $scope.trashPage = function(page){
+        if(confirm('Are you sure you want to trash this page?')){
+            pagesService.delete({id: page.id}, function(result){
+                page = result.data;
+                $state.go('pages.index');
+            }, function(err){
+
+            });
+        }
+    };
+
     $scope.newPage = function(){
         $state.go('pages.add');
     };

@@ -28,13 +28,13 @@ class PagesController extends ApiBaseController
 
     public function index()
     {
-        return $this->collection($this->model->all(), new PageTransformer);
+        return $this->collection($this->model->withTrashed()->get(), new PageTransformer);
     }
 
     public function show($id)
     {
         try {
-            $page = $this->model->find($id);
+            $page = $this->model->withTrashed()->find($id);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -77,28 +77,33 @@ class PagesController extends ApiBaseController
         $data = $request->except(['errors', 'id', 'trashed', 'slug']);
 
         try {
-            $page = $this->model->find($id);
-
-            $published_at = null;
-            if ($page->published_at) {
-                $published_at = ($data['status'] == 'published') ? $page->published_at : null;
+            if($data['action'] == 'restore'){
+                $page = $this->model->withTrashed()->find($id);
+                $page->restore();
             } else {
-                $published_at = ($data['status'] == 'published') ? Carbon::now() : null;
+                $page = $this->model->find($id);
+
+                $published_at = null;
+                if ($page->published_at) {
+                    $published_at = ($data['status'] == 'published') ? $page->published_at : null;
+                } else {
+                    $published_at = ($data['status'] == 'published') ? Carbon::now() : null;
+                }
+
+                $page->title = $data['title'];
+                $page->content = $data['content'];
+                $page->layout = $data['layout'];
+                $page->published_at = $published_at;
+                $page->user_id = Auth::user()->id;
+
+                $menu = $page->menus()->first();
+
+                $menu->url = $page->slug;
+                $menu->name = $page->title;
+
+                $page->save();
+                $menu->save();
             }
-
-            $page->title = $data['title'];
-            $page->content = $data['content'];
-            $page->layout = $data['layout'];
-            $page->published_at = $published_at;
-            $page->user_id = Auth::user()->id;
-
-            $menu = $page->menus()->first();
-
-            $menu->url = $page->slug;
-            $menu->name = $page->title;
-
-            $page->save();
-            $menu->save();
 
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
