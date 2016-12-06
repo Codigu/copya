@@ -115,12 +115,17 @@ class PagesController extends ApiBaseController
 
     public function destroy($id)
     {
-        $page = $this->model->find($id);
+        $page = $this->model->withTrashed()->find($id);
         if (!$page) {
             return response()->json(['error' => 'Entity not processable'], 402);
         }
         try {
-            $page->destroy($id);
+            if($page->trashed()){
+                $page->forceDelete();
+            } else{
+                $page->destroy($id);
+            }
+
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

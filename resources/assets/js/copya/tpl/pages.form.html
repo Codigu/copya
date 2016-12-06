@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12" ng-if="page.status != 'trashed'">
+                                <div class="col-sm-12" ng-if="page.status != 'trashed' && page.id">
                                     <button type="button" ng-click="trashPage(page)">Trash</button>
                                 </div>
                                 <div class="col-sm-12" ng-if="page.status == 'trashed'">

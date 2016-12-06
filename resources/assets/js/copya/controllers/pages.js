@@ -60,6 +60,16 @@ function PagesCtrl($scope, $sce, $state, $stateParams, pagesService, layoutServi
         }
     };
 
+    $scope.deletePage = function(page){
+        if(confirm('Are you sure you want to permanently delete this page?')){
+            pagesService.delete({id: page.id}, function(result){
+                $state.go('pages.index');
+            }, function(err){
+
+            });
+        }
+    };
+
     $scope.trashPage = function(page){
         if(confirm('Are you sure you want to trash this page?')){
             pagesService.delete({id: page.id}, function(result){
