@@ -77,9 +77,11 @@ class PagesController extends ApiBaseController
         $data = $request->except(['errors', 'id', 'trashed', 'slug']);
 
         try {
-            if($data['action'] == 'restore'){
-                $page = $this->model->withTrashed()->find($id);
-                $page->restore();
+            if($request->has('action')){
+                if($data['action'] == 'restore'){
+                    $page = $this->model->withTrashed()->find($id);
+                    $page->restore();
+                }
             } else {
                 $page = $this->model->find($id);
 

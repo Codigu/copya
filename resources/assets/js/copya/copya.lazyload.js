@@ -256,6 +256,16 @@ function load($ocLazyLoadProvider){
                 'js/copya/plugins/bootstrap-typehead/bloodhound.min.js',
                 'js/copya/plugins/angular-typehead/angular-typeahead.min.js'
             ]
+        }, {
+            name: 'ngdropzone',
+            files: [
+                'js/copya/plugins/ngdropzone/dropzone.css',
+                'js/copya/plugins/ngdropzone/dropzone.js',
+                'js/copya/plugins/ngdropzone/ng-dropzone.css',
+                'js/copya/plugins/ngdropzone/ng-dropzone.js',
+                //'js/copya/plugins/angular-dropzone/angular-dropzone.js'
+            ],
+            serie: true
         }
 
         ]
