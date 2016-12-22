@@ -31,7 +31,6 @@ class PagesController extends BaseController
 
     public function show(Request $request, $slug)
     {
-
         $page = $this->model->findBySlug($slug);
         if (!$page || $page->published_at == null) {
             return abort(404);
