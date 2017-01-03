@@ -12,6 +12,7 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\Pagination\PaginatorInterface;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ApiBaseController extends BaseController
 {
@@ -39,18 +40,19 @@ class ApiBaseController extends BaseController
         if (! is_null($callback)) {
             call_user_func($callback, $resources);
         }
-        if ($items instanceof IlluminatePaginator) {
+        if ($items instanceof LengthAwarePaginator) {
             $this->paginateCollection($resources, $items, $adapter);
         }
 
         return $this->buildResponse($resources);
     }
-    private function paginateCollection(Collection $collection, IlluminatePaginator $paginator, PaginatorInterface $adapter = null)
+    private function paginateCollection(Collection $collection, LengthAwarePaginator $paginator, PaginatorInterface $adapter = null)
     {
         if (is_null($adapter)) {
             $adapter = new IlluminatePaginatorAdapter($paginator);
         }
 
+        $this->manager = new Manager();
         $collection->setPaginator($adapter);
     }
     private function buildResponse(ResourceInterface $resource)
