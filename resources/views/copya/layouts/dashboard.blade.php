@@ -20,7 +20,7 @@
 
 
     <!--[if lte IE 9]>
-	<link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
 
 
     <!-- Scripts -->
@@ -54,7 +54,7 @@
     </script>
     <!-- Styles -->
     <link href="../node_modules/angular-ui-tree/dist/angular-ui-tree.css" rel="stylesheet">
-    <link href="assets/css/copya-dashboard.css" rel="stylesheet">
+    <link href="/css/copya-dashboard.css" rel="stylesheet">
     <style>
         .angular-ui-tree-handle{
             background: #f8faff;
@@ -84,7 +84,7 @@
         }
     </style>
 </head>
-<body  class="fixed-header" ng-class="{
+<body  class="fixed-header menu-pin" ng-class="{
 'bg-master-lighter': is('copya.extra.timeline'),
 'no-header': is('copya.social') || is('copya.calendar') || is('copya.maps.vector') || is('copya.maps.google'),
 'menu-pin' : copya.layout.menuPin || is('boxed'),

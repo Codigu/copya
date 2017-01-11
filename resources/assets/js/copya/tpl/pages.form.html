@@ -1,77 +1,86 @@
 <div class="container-fluid container-fixed-lg ng-scope">
     <!-- START PANEL -->
-    <div class="panel panel-transparent">
-        <div class="panel-heading">
-            <div class="panel-title" ng-show="page.id">Edit Page</div>
-            <div class="panel-title" ng-show="!page.id">New Page</div>
-        </div>
-        <div class="panel-body">
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <form id="form-work" class="form-horizontal" ng-submit="submitForm(page_.$valid)" role="form" autocomplete="off" name="page_" novalidate>
+    
+    <div class="page-heading m-t-30 m-b-15">
+        <h4 class="page-title" ng-show="!page.id">New Page</h4>
+        <h4 class="page-title" ng-show="page.id">Edit Page</h4>
+    </div>
+            
+    <form id="form-work" ng-submit="submitForm(page_.$valid)" role="form" autocomplete="off" name="page_" novalidate>
+        <div class="row">
+            <div class="col-sm-8">
+                 <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">Title</div>
+                    </div>
+                    <div class="panel-body">
                         <div class="form-group">
-                            <label for="title" class="col-sm-3 control-label">Title</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title" placeholder="Page title" name="title" ng-class="{'error': page_.title.$invalid && !page_.title.$pristine}" ng-model="page.title" required>
+                            <input type="text" class="form-control" id="title" placeholder="Page title" name="title" ng-class="{'error': page_.title.$invalid && !page_.title.$pristine}" ng-model="page.title" required>
                                 <label class="error" for="title" ng-show="page_.title.$invalid && !page_.title.$pristine">This field is required.</label>
-                            </div>
                         </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">Content</div>
+                    </div>
+                    <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Content</label>
-                            <div class="col-sm-9">
-                                <div class="summernote-wrapper">
-                                    <div id="summernote" config="summernote_options" ng-model="page.content" on-focus="focus(evt)" on-blur="blur(evt)" summernote></div>
-                                </div>
+                            <div class="summernote-wrapper">
+                                <div id="summernote" config="summernote_options" ng-model="page.content" on-focus="focus(evt)" on-blur="blur(evt)" summernote></div>
                             </div>
-                        </div>
-
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
+            <div class="col-sm-4">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">Status</div>
+                    </div>
+                    <div class="panel-body">
                         <div class="form-group">
                             <div class="row" ng-if="page.status != 'trashed'">
-                                <label class="col-sm-3 control-label" >Status: </label>
-                                <div class="col-sm-9">
-                                    <select name="status" title="status" ng-model="page.status">
-                                        <option value="draft">Draft</option>
-                                        <option value="published">Published</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12" ng-if="page.status != 'trashed' && page.id">
-                                    <button type="button" ng-click="trashPage(page)">Trash</button>
-                                </div>
-                                <div class="col-sm-12" ng-if="page.status == 'trashed'">
-                                    <button type="button" ng-click="restorePage(page)">Restore</button>
-                                    <button type="button" ng-click="deletePage(page)">Delete Permanently</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Layout: </label>
-                            <div class="col-sm-9">
-                                <select name="layout" title="Page Layout" ng-model="page.layout" >
-                                    <option value="{{ layout }}" ng-repeat="layout in layouts">{{ layout }}</option>
+                                <select class="form-control" name="status" title="status" ng-model="page.status">
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
                                 </select>
                             </div>
                         </div>
-
-
-
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p>I hereby certify that the information above is true and accurate. </p>
-                            </div>
-                            <div class="col-sm-9">
-                                <button class="btn btn-success" type="submit">Submit</button>
-                                <button class="btn btn-default"><i class="pg-close"></i> Clear</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">Layout</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <select class="form-control" name="layout" title="Page Layout" ng-model="page.layout" >
+                                <option value="{{ layout }}" ng-repeat="layout in layouts">{{ layout }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <div ng-if="page.status != 'trashed' && page.id">
+                            <a class="text-danger" ng-click="trashPage(page)">Move to Trash</button>
+                        </div>
+                        <div ng-if="page.status == 'trashed'">
+                            <a class="text-success" ng-click="restorePage(page)">Restore</button>
+                            <a class="text-danger" ng-click="deletePage(page)">Delete Permanently</button>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-success" type="submit" ng-show="!page.id">Publish</button>
+                        <button class="btn btn-success" type="submit" ng-show="page.id">Update</button>
+                    </div>
+                </div>
+            </div>  
         </div>
-    </div>
-    <!-- END PANEL -->
+    </form>
+
 </div>
 <!-- END CONTAINER FLUID -->
