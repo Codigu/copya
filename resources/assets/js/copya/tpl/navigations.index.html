@@ -58,13 +58,13 @@
                     <h5><span class="semi-bold">Navigation</span></h5>
                 </div>
                 <div class="modal-body">
-                    <form id="form-navigation" class="form-horizontal" ng-submit="submitNavigationForm(navigation_.$valid)" role="form" autocomplete="off" name="navigation_" novalidate>
+                    <form id="form-navigation" ng-submit="submitNavigationForm(navigation_.$valid)" role="form" autocomplete="off" name="navigation_" novalidate>
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div pg-form-group class="form-group form-group-default">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Navigation Name" name="name" ng-class="{'error': navigation_.title.$invalid && !navigation_.title.$pristine}" ng-model="navigation.name" required>
+                                        <input type="text" class="form-control input-lg" id="name" placeholder="Navigation Name" name="name" ng-class="{'error': navigation_.title.$invalid && !navigation_.title.$pristine}" ng-model="navigation.name" required>
                                         <!--<label class="error" for="name" ng-show="navigation_.name.$invalid && !navigation_.name.$pristine">This field is required.</label>-->
                                     </div>
                                 </div>

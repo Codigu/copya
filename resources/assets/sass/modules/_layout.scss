@@ -389,14 +389,6 @@ body {
                         display: block;
                         clear: both;
                     }
-                    &.detailed{
-                        & > .title{
-                            line-height: 28px;
-                        }
-                        & > .details{
-                            line-height: 16px;
-                        }
-                    }
                 }
                 &.active {
                     & > ul {
@@ -469,7 +461,7 @@ body {
                         display: none;
                         list-style: none;
                         clear: both;
-                        margin: 0 0 10px 0;
+                        margin: 10px 0 10px 0;
                         background-color: $color-menu-dark;
                         padding: 18px 0 10px 0;
                         & > li {
@@ -543,6 +535,7 @@ body {
     font-weight: bold;
     & > i{
         font-size: 14px;
+        line-height: 40px;
     }
 
 }
@@ -802,6 +795,15 @@ $secondary-sidebar-width : 250px;
     overflow: auto;
     min-height: 100%;
     margin-left: $secondary-sidebar-width;
+}
+
+/* Note Editor
+------------------------------------
+*/
+.note-editor {
+     .note-editable {
+        height: 300px !important;
+     }
 }
 
 /* Quick View 
@@ -1066,6 +1068,8 @@ $secondary-sidebar-width : 250px;
         }
     }
 }
+
+
 
 /* Page Container 
 ------------------------------------

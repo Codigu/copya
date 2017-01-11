@@ -9,7 +9,20 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="menuable">
+                        <ul>
+                            <li ng-repeat="menu in menus">
+                              <div class="checkbox check-primary">
+                                <input type="checkbox" name="menu-select" id="{{ strtolower(menu.name) }}" ng-click="selectMenu(menu)">
+                                <label for="{{ strtolower(menu.name) }}">{{ menu.name }}</label>
+                              </div>
+                            </li>
+                        </ul>
+                        <button ng-click="addToNavigation()">Add</button>
+                    </div>
+                </div>
+                <div class="col-md-8">
                     <div ui-tree data-max-depth="2">
                         <ol ui-tree-nodes="" ng-model="items">
                             <li ng-repeat="item in items" ui-tree-node>
@@ -30,17 +43,7 @@
                     </div>
                     <button ng-click="saveNavigationMenu()">Save</button>
                 </div>
-                <div class="col-md-6">
-                    <div class="menuable">
-                        <ul>
-                            <li ng-repeat="menu in menus">
-                                <input type="checkbox" name="menu-select" ng-click="selectMenu(menu)">
-                                {{ menu.name }}
-                            </li>
-                        </ul>
-                        <button ng-click="addToNavigation()">Add</button>
-                    </div>
-                </div>
+                
             </div>
 
         </div>
