@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('vendor.copya.layouts.auth')
 
 @section('content')
 
