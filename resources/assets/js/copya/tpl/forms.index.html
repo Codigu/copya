@@ -1,14 +1,16 @@
-<div class="container-fluid container-fixed-lg bg-white">
-    <!-- START PANEL -->
-    <div class="panel panel-transparent">
-        <div class="panel-heading">
-            <div class="panel-title">Forms
-            </div>
-            <div class="btn-group pull-right m-b-10">
-                <button type="button" class="btn btn-default" ng-click="newForm()">Add new</button>
-            </div>
-            <div class="clearfix"></div>
+<div class="container-fluid container-fixed-lg">
+    
+    <div class="page-heading">
+        <div class="pull-left">
+            <h1 class="page-title">Forms</h1>
         </div>
+        <div class="pull-right">
+            <button type="button" class="btn btn-default" ng-click="newForm()">Add new</button>
+        </div>
+    </div>
+
+    <!-- START PANEL -->
+    <div class="panel">
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-hover" id="formsTable">

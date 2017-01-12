@@ -75,6 +75,10 @@
             }
         }
     }
+    .panel-footer {
+        border: 0;
+        background-color: transparent;
+    }
     &.panel-default{
         border:1px solid $panel-border-color;
     }

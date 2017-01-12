@@ -1,9 +1,9 @@
 <div class="container-fluid container-fixed-lg ng-scope">
     <!-- START PANEL -->
     
-    <div class="page-heading m-t-30 m-b-15">
-        <h4 class="page-title" ng-show="!page.id">New Page</h4>
-        <h4 class="page-title" ng-show="page.id">Edit Page</h4>
+    <div class="page-heading">
+        <h1 class="page-title" ng-show="!page.id">New Page</h1>
+        <h1 class="page-title" ng-show="page.id">Edit Page</h1>
     </div>
             
     <form id="form-work" ng-submit="submitForm(page_.$valid)" role="form" autocomplete="off" name="page_" novalidate>
@@ -69,13 +69,13 @@
                             <a class="text-danger" ng-click="trashPage(page)">Move to Trash</button>
                         </div>
                         <div ng-if="page.status == 'trashed'">
-                            <a class="text-success" ng-click="restorePage(page)">Restore</button>
+                            <a class="text-primary" ng-click="restorePage(page)">Restore</button>
                             <a class="text-danger" ng-click="deletePage(page)">Delete Permanently</button>
                         </div>
                     </div>
                     <div class="pull-right">
-                        <button class="btn btn-success" type="submit" ng-show="!page.id">Publish</button>
-                        <button class="btn btn-success" type="submit" ng-show="page.id">Update</button>
+                        <button class="btn btn-primary" type="submit" ng-show="!page.id">Publish</button>
+                        <button class="btn btn-primary" type="submit" ng-show="page.id">Update</button>
                     </div>
                 </div>
             </div>  

@@ -1,22 +1,20 @@
-<div class="container-fluid container-fixed-lg bg-white">
-    <!-- START PANEL -->
-    <div class="panel panel-transparent">
-        <div class="panel-heading">
-            <div class="panel-title">Navigations
-            </div>
-            <div class="btn-group pull-right m-b-10">
-                <button type="button" class="btn btn-default" ng-click="toggleSlideUpSize()">Add new</button>
-            </div>
-            <div class="clearfix"></div>
+<div class="container-fluid container-fixed-lg">
+    <div class="page-heading">
+        <div class="pull-left">
+            <h1 class="page-title">Navigations</h1>
         </div>
+        <div class="pull-right">
+            <button type="button" class="btn btn-default" ng-click="toggleSlideUpSize()">Add new</button>
+        </div>
+    </div>
+
+    <!-- START PANEL -->
+    <div class="panel">
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-hover" id="navigationsTable">
                     <thead>
                     <tr>
-                        <!-- NOTE * : Inline Style Width For Table Cell is Required as it may differ from user to user
-                                    Comman Practice Followed
-                                    -->
                         <th style="width:1%">
                             <button class="btn"><i class="pg-trash"></i>
                             </button>
@@ -28,7 +26,7 @@
                     <tbody>
                         <tr ng-repeat="navigation in navigations" ng-click="editNavigation(page.id)">
                             <td class="v-align-middle">
-                                <div class="checkbox ">
+                                <div class="checkbox checkbox-primary">
                                     <input type="checkbox" value="{{ navigation.id }}" id="checkbox{{ navigation.id }}" ng-click="selectRow($event)">
                                     <label for="checkbox{{ navigation.id }}"></label>
                                 </div>

@@ -1,54 +1,73 @@
-<div class="container-fluid container-fixed-lg bg-white">
-    <!-- START PANEL -->
-    <div class="panel panel-transparent">
-        <div class="panel-heading">
-            <div class="panel-title">
-            </div>
-
-            <div class="clearfix"></div>
+<div class="container-fluid container-fixed-lg">
+     <div class="page-heading">
+        <div class="pull-left">
+            <h1 class="page-title">Navigation</h1>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">
+    </div>
+
+    <!-- START PANEL -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">Pages</div>
+                </div>
+                <div class="panel-body">
                     <div class="menuable">
-                        <ul>
+                        <ul class="list-unstyled">
                             <li ng-repeat="menu in menus">
                               <div class="checkbox check-primary">
-                                <input type="checkbox" name="menu-select" id="{{ strtolower(menu.name) }}" ng-click="selectMenu(menu)">
-                                <label for="{{ strtolower(menu.name) }}">{{ menu.name }}</label>
+                                <input type="checkbox" name="menu-select" id="{{ menu.name | lowercase }}" ng-click="selectMenu(menu)">
+                                <label for="{{ menu.name | lowercase }}">{{ menu.name }}</label>
                               </div>
                             </li>
                         </ul>
-                        <button ng-click="addToNavigation()">Add</button>
                     </div>
+                   
                 </div>
-                <div class="col-md-8">
-                    <div ui-tree data-max-depth="2">
-                        <ol ui-tree-nodes="" ng-model="items">
-                            <li ng-repeat="item in items" ui-tree-node>
-                                <div ui-tree-handle>
-                                    {{item.name}}
-                                    <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
-                                </div>
-                                <ol ui-tree-nodes="" ng-model="item.items">
-                                    <li ng-repeat="subItem in item.items" ui-tree-node>
-                                        <div ui-tree-handle>
-                                            {{subItem.name}}
-                                            <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </li>
-                        </ol>
-                    </div>
-                    <button ng-click="saveNavigationMenu()">Save</button>
+               <div class="panel-footer panel-footer-default clearfix">
+                  <div class="pull-right">
+                    <button class="btn btn-default" ng-click="addToNavigation()">Add to Menu</button>
+                  </div>
                 </div>
-                
             </div>
-
         </div>
+        <div class="col-md-8">
+            <div class="panel">
+              <div class="panel-heading">
+                    <div class="panel-title">Menu</div>
+                </div>
+              <div class="panel-body">
+                  <div class="dd" ui-tree data-max-depth="2">
+                      <ol class="dd-list" ui-tree-nodes="" ng-model="items">
+                          <li class="dd-item" ng-repeat="item in items" ui-tree-node>
+                              <div class="dd-handle" ui-tree-handle>
+                                  {{item.name}}
+                                  <a class="pull-right btn btn-default btn-xs" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
+                              </div>
+                              <ol class="dd-list" ui-tree-nodes="" ng-model="item.items">
+                                  <li class="dd-item" ng-repeat="subItem in item.items" ui-tree-node>
+                                      <div class="dd-handle" ui-tree-handle>
+                                          {{subItem.name}}
+                                          <a class="pull-right text-primary" data-nodrag="" ng-click="itemDetails(this)"><span class="glyphicon glyphicon-edit"></span></a>
+                                      </div>
+                                  </li>
+                              </ol>
+                          </li>
+                      </ol>
+                  </div>
+                  
+              </div>
+              <div class="panel-footer panel-footer-default clearfix">
+                <div class="pull-right">
+                  <button class="btn btn-primary" ng-click="saveNavigationMenu()">Create Menu</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        
     </div>
-    <!-- END PANEL -->
+
 </div>
 
 
