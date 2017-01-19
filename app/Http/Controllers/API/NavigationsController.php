@@ -46,10 +46,8 @@ class NavigationsController extends ApiBaseController
 
     public function update(NavigationRequest $request, $id)
     {
-        //$items = $request->get('items');
-        if($request->has('items') && count($request->get('items')) > 0){
-            return $this->saveNavigationItems($request->get('id'), $request->get('items'));
-        } else if( $request->has('update') && $request->get('update') == 'item_detail'){
+
+        if( $request->has('update') && $request->get('update') == 'item_detail'){
             $id = $request->get('menu_id');
             $navigation = Navigation::find($request->get('navigation_id'));
             $data = array(
@@ -63,6 +61,8 @@ class NavigationsController extends ApiBaseController
 
             $navigation->menus()->syncWithoutDetaching([$id => $data]);
 
+        } else if($request->has('items') && count($request->get('items')) > 0){
+            return $this->saveNavigationItems($request->get('id'), $request->get('items'));
         }
 
         try {
@@ -79,7 +79,6 @@ class NavigationsController extends ApiBaseController
     {
         try{
             $navigation = Navigation::find($id);
-
             //build data
             $data = array();
 
@@ -91,20 +90,21 @@ class NavigationsController extends ApiBaseController
                 }
             });*/
 
-
             foreach($items as $key => $menu){
                 $data[$menu['id']] = array(
                     'parent_id' => null,
-                    'name' => 'to be updated',
+                    'name' => $menu['name'],
                     'url' => $menu['url'],
+                    'weight' => $key
                 );
 
                 if(count($menu['items']) > 0){
-                    foreach($menu['items'] as $key => $submenu){
+                    foreach($menu['items'] as $sub_key => $submenu){
                         $data[$submenu['id']] = array(
                             'parent_id' => $menu['id'],
-                            'name' => 'to be updated',
+                            'name' => $submenu['name'],
                             'url' => $submenu['url'],
+                            'weight' => $sub_key
                         );
                     }
                 }

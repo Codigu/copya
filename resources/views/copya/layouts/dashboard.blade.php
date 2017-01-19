@@ -54,7 +54,7 @@
     </script>
     <!-- Styles -->
     <link href="../node_modules/angular-ui-tree/dist/angular-ui-tree.css" rel="stylesheet">
-    <link href="/css/copya-dashboard.css" rel="stylesheet">
+    <link href="/assets/css/copya-dashboard.css" rel="stylesheet">
     <style>
        
         .angular-ui-tree-placeholder {

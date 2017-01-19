@@ -40,37 +40,30 @@ class NavigationTransformer extends TransformerAbstract
             );
         }
 
-        $treeMenu = count($flatMenu) > 1 ? $this->buildTree($flatMenu, 'parent_id', 'menu_id') : $flatMenu;
+        $treeMenu = count($flatMenu) > 1 ? $this->createTree($flatMenu, 'parent_id', 'menu_id') : $flatMenu;
         return $treeMenu;
     }
 
 
-    private function buildTree($flat, $pidKey, $idKey = null)
-    {
-        $grouped = array();
 
-        foreach ($flat as $sub){
-            $grouped[$sub[$pidKey]][] = $sub;
-        }
 
-        $fnBuilder = function($siblings) use (&$fnBuilder, $grouped, $idKey) {
-            foreach ($siblings as $k => $sibling) {
-                $id = $sibling[$idKey];
-                if(isset($grouped[$id])) {
-                    $sibling['items'] = $fnBuilder($grouped[$id]);
-                }
-                $siblings[$k] = $sibling;
+    protected function createTree($menu, $parent_key, $item_id){
+        $tree = [];
+        $children = [];
+
+        foreach ($menu as $k => $item){
+            if($item[$parent_key]){
+                $children[$item[$parent_key]] = $item;
+            } else {
+                $tree[$item[$item_id]] = $item;
             }
-
-            return $siblings;
-        };
-
-        foreach($grouped as $group){
-            $tree = $fnBuilder($group);
-            break;
         }
 
-        return $tree;
+        foreach($children as $child){
+            $tree[$child[$parent_key]]['items'][] = $child;
+        }
+
+        return array_values($tree);
     }
 
 }

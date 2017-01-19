@@ -26,13 +26,14 @@ class CopyaMenu
             $nav_name = str_replace('-', '_', $navigation->name);
 
             Menu::make($nav_name, function($menu) use ($items) {
+
                 foreach($items as $item){
                     //dd($item);
-                    $menu->add($item['name'], $item['url']);
+                    $menu_item = $menu->add($item['name'], $item['url']);
+
                     if(count($item['items']) > 0){
                         foreach($item['items'] as $subItem){
-
-                            //$menu->$parent->add($subItem->name, $subItem->url);
+                            $menu_item->add($subItem['name'], $subItem['url']);
                         }
                     }
                 }
